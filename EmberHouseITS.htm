@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Investor Term Sheet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;
+  --ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;
+  --ember:#7c3028;--copper:#c4956a;--char:#3d2820;
+  --green:#2a5c3a;--red:#7a1a1a;
+}
+body{background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:13px;line-height:1.65}
+@media print{
+  nav{display:none!important}
+  main{margin-top:0!important;padding:32px 48px!important}
+  .no-print{display:none!important}
+  body{background:white}
+  .page{box-shadow:none!important}
+}
+nav{position:fixed;top:0;left:0;right:0;background:var(--char);z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav-brand{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.45);font-size:10px;margin-left:8px;letter-spacing:0.1em}
+.print-btn{background:var(--ember);border:none;color:var(--sand);font-size:9px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;padding:6px 14px;text-transform:uppercase;letter-spacing:0.15em}
+.print-btn:hover{background:var(--copper)}
+main{margin-top:50px;max-width:860px;margin-left:auto;margin-right:auto;padding:48px 52px 100px}
+.page{background:var(--offwhite);border:1px solid var(--linen);padding:56px 60px;box-shadow:0 2px 24px rgba(26,22,18,0.06)}
+.ts-eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
+.ts-title{font-size:52px;font-weight:900;line-height:0.88;color:var(--ink);letter-spacing:-0.03em;margin-bottom:6px}
+.ts-title span{color:var(--ember)}
+.ts-subtitle{font-size:12px;font-weight:300;color:var(--ash);margin-bottom:6px}
+.ts-version{font-size:10px;font-weight:400;color:var(--slate);letter-spacing:0.1em;margin-bottom:28px}
+.ts-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:28px}
+.summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-bottom:32px}
+.sum-cell{background:var(--sand);padding:18px 16px;text-align:center}
+.sum-label{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.sum-value{font-size:26px;font-weight:800;color:var(--ember);line-height:1;margin-bottom:3px;letter-spacing:-0.02em}
+.sum-sub{font-size:10px;font-weight:300;color:var(--slate)}
+.ts-section{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--ember);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--linen)}
+.term-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.term-table .th-row td{background:var(--stone);border-bottom:2px solid var(--ember);padding:8px 14px;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember)}
+.term-table tr{border-bottom:1px solid var(--linen)}
+.term-table tr:last-child{border-bottom:none}
+.term-table td{padding:11px 14px;vertical-align:top;font-size:12px;font-weight:300;color:var(--walnut);line-height:1.6}
+.term-table td:first-child{font-size:10px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.1em;width:200px;padding-top:13px}
+.term-table tr:nth-child(even) td{background:var(--sand)}
+.term-table strong{font-weight:600;color:var(--ink)}
+.term-table .accent{color:var(--ember);font-weight:600}
+.returns-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12px}
+.returns-table thead tr{border-bottom:2px solid var(--ember)}
+.returns-table th{text-align:right;padding:8px 12px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--ember);background:var(--stone)}
+.returns-table th:first-child{text-align:left}
+.returns-table td{padding:10px 12px;border-bottom:1px solid var(--linen);color:var(--walnut);text-align:right;font-weight:300}
+.returns-table td:first-child{text-align:left;font-weight:500;color:var(--ink)}
+.returns-table tr:nth-child(even) td{background:var(--sand)}
+.returns-table .tot td{border-top:2px solid var(--ember);font-weight:700;color:var(--ink)}
+.returns-table .tot td:first-child{color:var(--ember)}
+.acc{color:var(--ember);font-weight:600}
+.acc-green{color:var(--green);font-weight:700}
+.exit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.exit-card{border:1px solid var(--linen);border-top:2px solid var(--ember);padding:16px;background:var(--sand)}
+.exit-card-label{font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+.exit-card-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.exit-card-body{font-size:11px;font-weight:300;color:var(--walnut);line-height:1.6}
+.sens-year-header{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;margin-top:20px;padding:6px 12px;display:inline-block}
+.sens-year-header.y1{background:rgba(124,48,40,0.08);color:var(--ember)}
+.sens-year-header.y2{background:rgba(42,92,58,0.08);color:var(--green)}
+.sens-year-header.y3{background:rgba(124,48,40,0.06);color:var(--ember)}
+.sens-table{width:100%;border-collapse:collapse;margin-bottom:4px;font-size:11px}
+.sens-table thead tr{border-bottom:2px solid var(--ember)}
+.sens-table.green thead tr{border-bottom-color:var(--green)}
+.sens-table th{padding:7px 10px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--ember);background:var(--stone);text-align:right}
+.sens-table th:first-child{text-align:left}
+.sens-table.green th{color:var(--green)}
+.sens-table td{padding:9px 10px;border-bottom:1px solid var(--linen);color:var(--walnut);text-align:right;font-weight:300}
+.sens-table td:first-child{text-align:left;font-weight:500;color:var(--ink)}
+.sens-table tr:nth-child(even) td{background:var(--sand)}
+.sens-table .base td{background:rgba(124,48,40,0.06);font-weight:700}
+.sens-table .base td:first-child{color:var(--ember)}
+.sens-table .base .acc{color:var(--ember);font-weight:800}
+.sens-table.green .base td{background:rgba(42,92,58,0.06)}
+.sens-table.green .base td:first-child{color:var(--green)}
+.sens-table.green .base .acc{color:var(--green);font-weight:800}
+.sens-note{font-size:10px;color:var(--slate);font-weight:300;margin-bottom:20px;font-style:italic;padding:8px 12px;border-left:2px solid var(--linen);line-height:1.6}
+.legal-note{border-left:2px solid var(--linen);padding:12px 16px;background:var(--stone);font-size:10px;font-weight:300;color:var(--slate);line-height:1.7;margin-bottom:24px}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.sig-block-inner{border:1px solid var(--linen);padding:18px 20px;background:var(--sand)}
+.sig-label{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:20px}
+.sig-line{border-bottom:1px solid var(--ash);height:36px;margin-bottom:8px}
+.sig-sub{font-size:9px;font-weight:300;color:var(--slate)}
+.ts-footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.ts-footer span{font-size:8px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">The Ember House<span>Investor Term Sheet</span></div>
+  <button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
+</nav>
+<main><div class="page">
+
+  <div class="ts-eyebrow">Confidential &mdash; Investor Summary Document &mdash; 2026</div>
+  <div class="ts-title">Investor<br><span>Term Sheet</span></div>
+  <div class="ts-subtitle">The Ember House &mdash; Orangeville&ndash;Caledon&ndash;Amaranth, Ontario</div>
+  <div class="ts-version">Version 1.0 &mdash; For Discussion Purposes Only &mdash; Not a Binding Legal Agreement</div>
+  <div class="ts-rule"></div>
+
+  <div class="summary-row">
+    <div class="sum-cell"><div class="sum-label">Total Investment Ask</div><div class="sum-value">$67,499</div><div class="sum-sub">One-time, full capital deployment</div></div>
+    <div class="sum-cell"><div class="sum-label">3-Year IRR</div><div class="sum-value">92.30%</div><div class="sum-sub">Internal Rate of Return</div></div>
+    <div class="sum-cell"><div class="sum-label">Capital Recovery</div><div class="sum-value">Month 10</div><div class="sum-sub">Full return of invested capital</div></div>
+  </div>
+
+  <div class="ts-section">Investment Terms</div>
+  <table class="term-table">
+    <tr class="th-row"><td>Term</td><td>Detail</td></tr>
+    <tr><td>Investment Amount</td><td><strong>$67,498.73</strong> &mdash; full startup capital. Covers CapEx ($40,235), First &amp; Last Month Rent ($15,000), and 6-week on-ramp operating costs ($12,263).</td></tr>
+    <tr><td>Investment Structure</td><td>Revenue share agreement. Investor receives <strong class="accent">60% of Net Cash Flow</strong> monthly until exit. No equity stake in physical assets.</td></tr>
+    <tr><td>Operator Share</td><td><strong>40% of Net Cash Flow</strong> monthly. Operator manages all day-to-day operations, bookings, sanitization, guest relations, and event execution.</td></tr>
+    <tr><td>Distribution Schedule</td><td>Monthly, within <strong>7 days of month close</strong>. Accompanied by a one-page P&amp;L summary for the period.</td></tr>
+    <tr><td>Minimum Term</td><td><strong>12 months</strong> from first revenue distribution. Neither party may exit prior to this date without mutual written agreement.</td></tr>
+    <tr><td>Reporting</td><td>Operator provides investor with a monthly P&amp;L summary and annual financial overview. Investor may request a full book review with 14 days' notice.</td></tr>
+    <tr><td>Governing Law</td><td>Province of Ontario, Canada. Full investment agreement to be drafted by qualified Ontario legal counsel prior to capital deployment.</td></tr>
+  </table>
+
+  <div class="ts-section">Projected Investor Returns</div>
+  <table class="returns-table">
+    <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>3-Year Total</th></tr></thead>
+    <tbody>
+      <tr><td>Total Gross Revenue</td><td>$273,600</td><td>$287,280</td><td>$301,644</td><td>$862,524</td></tr>
+      <tr><td>Total Operating Expenses</td><td>($123,000)</td><td>($123,480)</td><td>($123,984)</td><td>($370,464)</td></tr>
+      <tr><td>Net Operating Income</td><td>$150,600</td><td>$163,800</td><td>$177,660</td><td>$492,060</td></tr>
+      <tr><td>Startup Capital (Year 1 only)</td><td>($67,499)</td><td>&mdash;</td><td>&mdash;</td><td>($67,499)</td></tr>
+      <tr><td>Net Cash Flow</td><td>$83,101</td><td>$163,800</td><td>$177,660</td><td>$424,561</td></tr>
+      <tr class="tot"><td>Investor Distribution (60%)</td><td class="acc">$49,861</td><td class="acc">$98,280</td><td class="acc">$106,596</td><td class="acc">$254,737</td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-bottom:28px">
+    <div style="background:var(--sand);padding:14px 16px;text-align:center"><div class="sum-label">Return Multiple</div><div class="sum-value" style="font-size:22px">3.71&times;</div><div class="sum-sub">On invested capital over 3 years</div></div>
+    <div style="background:var(--sand);padding:14px 16px;text-align:center"><div class="sum-label">Year 1 Return on Capital</div><div class="sum-value" style="font-size:22px">73.9%</div><div class="sum-sub">$49,861 on $67,499 invested</div></div>
+    <div style="background:var(--sand);padding:14px 16px;text-align:center"><div class="sum-label">3-Year Cumulative Return</div><div class="sum-value" style="font-size:22px">$254,737</div><div class="sum-sub">Total investor distributions</div></div>
+  </div>
+
+  <div class="ts-section">Sensitivity Analysis &mdash; Investor Return Across 3 Years</div>
+  <p style="font-size:11px;font-weight:300;color:var(--slate);margin-bottom:4px;line-height:1.7">All figures show the investor&rsquo;s 60% share of Net Cash Flow. Variables are weekday sessions per week and retreat ticket price. All other assumptions &mdash; fixed overhead, retreat variable costs, attendee count, and 5% annual growth &mdash; remain constant. <strong style="color:var(--ink)">Base case row highlighted in each table.</strong></p>
+
+  <div class="sens-year-header y1">Year 1 &mdash; Includes $67,499 Startup Capital</div>
+  <table class="sens-table">
+    <thead><tr>
+      <th style="text-align:left">Sessions/Week &darr; &nbsp; Retreat Ticket &rarr;</th>
+      <th>$350 / person</th><th>$400 / person</th><th>$450 / person</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>10 sessions / week</td><td>$14,341</td><td>$25,861</td><td>$37,381</td></tr>
+      <tr class="base"><td>15 sessions / week &mdash; Base Case</td><td>$38,341</td><td class="acc">$49,861</td><td>$61,381</td></tr>
+      <tr><td>20 sessions / week</td><td>$62,341</td><td>$73,861</td><td>$85,381</td></tr>
+      <tr><td>25 sessions / week</td><td>$86,341</td><td>$97,861</td><td>$109,381</td></tr>
+    </tbody>
+  </table>
+  <div class="sens-note">Year 1 returns are compressed by the one-time $67,499 startup capital charge. Once recovered at Month 10, all subsequent cash flow flows directly to distributions.</div>
+
+  <div class="sens-year-header y2">Year 2 &mdash; Startup Costs Retired &mdash; 5% Revenue Growth</div>
+  <table class="sens-table green">
+    <thead><tr>
+      <th style="text-align:left;color:var(--green)">Sessions/Week &darr; &nbsp; Retreat Ticket &rarr;</th>
+      <th style="color:var(--green)">$350 / person</th><th style="color:var(--green)">$400 / person</th><th style="color:var(--green)">$450 / person</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>10 sessions / week</td><td>$60,984</td><td>$73,080</td><td>$85,176</td></tr>
+      <tr class="base"><td>15 sessions / week &mdash; Base Case</td><td>$86,184</td><td class="acc acc-green">$98,280</td><td>$110,376</td></tr>
+      <tr><td>20 sessions / week</td><td>$111,384</td><td>$123,480</td><td>$135,576</td></tr>
+      <tr><td>25 sessions / week</td><td>$136,584</td><td>$148,680</td><td>$160,776</td></tr>
+    </tbody>
+  </table>
+  <div class="sens-note">With startup costs retired, investor base case nearly doubles to $98,280. Even the most conservative Year 2 scenario ($60,984) exceeds the entire Year 1 base case return.</div>
+
+  <div class="sens-year-header y3">Year 3 &mdash; Startup Costs Retired &mdash; 10.25% Cumulative Revenue Growth</div>
+  <table class="sens-table">
+    <thead><tr>
+      <th style="text-align:left">Sessions/Week &darr; &nbsp; Retreat Ticket &rarr;</th>
+      <th>$350 / person</th><th>$400 / person</th><th>$450 / person</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>10 sessions / week</td><td>$67,435</td><td>$80,136</td><td>$92,837</td></tr>
+      <tr class="base"><td>15 sessions / week &mdash; Base Case</td><td>$93,895</td><td class="acc">$106,596</td><td>$119,297</td></tr>
+      <tr><td>20 sessions / week</td><td>$120,355</td><td>$133,056</td><td>$145,757</td></tr>
+      <tr><td>25 sessions / week</td><td>$146,815</td><td>$159,516</td><td>$172,217</td></tr>
+    </tbody>
+  </table>
+  <div class="sens-note">At full capacity with a $450 ticket price, the investor earns $172,217 in Year 3 alone &mdash; a 255% single-year return on the original $67,499 investment.</div>
+
+  <div class="ts-section">Exit Options</div>
+  <div class="exit-grid">
+    <div class="exit-card"><div class="exit-card-label">Option A &mdash; Preferred</div><div class="exit-card-title">Operator Buyout</div><div class="exit-card-body">Exercisable after <strong>Month 18</strong>. Buyout price = <strong>18&times; trailing 6-month monthly average distribution</strong>.<br><br><em>Example: $8,000/mo avg &rarr; Buyout = $144,000</em></div></div>
+    <div class="exit-card"><div class="exit-card-label">Option B</div><div class="exit-card-title">Stake Transfer</div><div class="exit-card-body">Investor may transfer their 60% revenue share to a qualified third party after <strong>Month 12</strong>, subject to operator approval. Operator retains <strong>right of first refusal</strong>.</div></div>
+    <div class="exit-card"><div class="exit-card-label">Option C</div><div class="exit-card-title">Agreed Wind-Down</div><div class="exit-card-body">By mutual written agreement only. All business assets liquidated and proceeds distributed <strong>60% investor / 40% operator</strong> after outstanding obligations settled.</div></div>
+  </div>
+
+  <div class="legal-note"><strong>Important:</strong> This term sheet is a summary document prepared for discussion purposes only. It does not constitute a binding legal agreement. All terms are subject to negotiation and must be formalized in a full investment agreement drafted by qualified Ontario legal counsel before any capital is deployed. Financial projections are forward-looking estimates based on reasonable assumptions and are not guaranteed.</div>
+
+  <div class="ts-section">Acknowledgement &mdash; For Discussion Record Only</div>
+  <p style="font-size:11px;font-weight:300;color:var(--slate);margin-bottom:16px">By signing below, both parties acknowledge they have reviewed this term sheet and agree to proceed to formal legal documentation of the investment agreement.</p>
+  <div class="sig-grid">
+    <div class="sig-block-inner"><div class="sig-label">Investor</div><div class="sig-line"></div><div class="sig-sub">Full Legal Name &amp; Signature</div><div class="sig-line" style="margin-top:16px"></div><div class="sig-sub">Date</div></div>
+    <div class="sig-block-inner"><div class="sig-label">Operator &mdash; The Ember House</div><div class="sig-line"></div><div class="sig-sub">Full Legal Name &amp; Signature</div><div class="sig-line" style="margin-top:16px"></div><div class="sig-sub">Date</div></div>
+  </div>
+  <div class="ts-footer"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &mdash; Investor Term Sheet &mdash; v1.0 &mdash; 2026</span></div>
+
+</div></main>
+</body>
+</html>

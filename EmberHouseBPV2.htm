@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Business Plan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;--ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;--ember:#7c3028;--ember-mid:#9e3d32;--copper:#c4956a;--char:#3d2820;--green:#2a5c3a;--red:#7a1a1a;--amber:#8a5a10}
+body{background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;line-height:1.75}
+nav{position:fixed;top:0;left:0;right:0;background:var(--char);z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav-brand{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.45);font-size:10px;margin-left:8px;letter-spacing:0.1em}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap}
+.nav-links button{background:none;border:none;color:rgba(242,237,228,0.4);font-size:9px;font-family:'Outfit',sans-serif;font-weight:400;cursor:pointer;padding:5px 10px;transition:all 0.18s;text-transform:uppercase;letter-spacing:0.12em}
+.nav-links button:hover,.nav-links button.active{color:var(--sand);background:var(--ember)}
+main{margin-top:50px;max-width:940px;margin-left:auto;margin-right:auto;padding:64px 52px 120px}
+.section{display:none;animation:fadeIn 0.3s ease}.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.cover{padding:56px 0 0}
+.cover-eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--slate);margin-bottom:32px}
+.cover-title{font-size:88px;font-weight:900;line-height:0.88;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px}
+.cover-title span{color:var(--ember)}
+.cover-subtitle{font-size:14px;font-weight:300;color:var(--ash);margin-bottom:40px;letter-spacing:0.02em}
+.cover-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:40px}
+.cover-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-bottom:48px}
+.cover-meta-cell{background:var(--sand);padding:24px 20px}
+.cover-meta-cell .label{font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+.cover-meta-cell .value{font-size:30px;font-weight:700;color:var(--ember);line-height:1;margin-bottom:4px}
+.cover-meta-cell .sub{font-size:11px;font-weight:300;color:var(--slate)}
+.cover-statement{border-left:2px solid var(--ember);padding:24px 28px;background:var(--stone);font-size:14px;font-weight:300;line-height:1.8;color:var(--walnut)}
+.cover-statement p+p{margin-top:12px}
+.cover-statement strong{font-weight:600;color:var(--ink)}
+.cover-footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.cover-footer span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+.sh{margin-bottom:44px}
+.sh-num{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:8px}
+.sh-rule{width:100%;height:1px;background:var(--linen);margin-bottom:20px}
+.sh-title{font-size:46px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-0.02em;margin-bottom:12px}
+.sh-intro{font-size:13px;font-weight:300;color:var(--ash);max-width:640px;line-height:1.7}
+h3{font-size:18px;font-weight:700;color:var(--ink);margin:40px 0 14px;letter-spacing:-0.01em}
+h4{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.22em;color:var(--ember);margin:18px 0 8px}
+p{margin-bottom:12px;color:var(--walnut);font-size:14px;font-weight:300}
+strong{font-weight:600;color:var(--ink)}
+.card{border-left:2px solid var(--ember);padding:18px 22px;background:var(--stone);margin-bottom:14px}
+.card-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:24px}
+.stat-box{background:var(--offwhite);border:1px solid var(--linen);padding:20px 16px;text-align:center}
+.stat-box .num{font-size:28px;font-weight:700;color:var(--ember);line-height:1;margin-bottom:6px}
+.stat-box .lbl{font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--slate)}
+.hl{border-left:2px solid var(--ember);padding:18px 22px;background:var(--stone);margin:18px 0}
+.hl.green{border-left-color:var(--green)}.hl.red{border-left-color:var(--red)}.hl.neutral{border-left-color:var(--linen);background:var(--offwhite)}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:13px}
+thead tr{border-bottom:2px solid var(--ember)}
+th{text-align:left;padding:8px 12px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;color:var(--ember);background:var(--stone)}
+td{padding:9px 12px;border-bottom:1px solid var(--linen);color:var(--walnut);font-weight:300}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--offwhite)}
+.ta{color:var(--ember);font-weight:600}.tm{color:var(--slate)}.tr{text-align:right}
+.fin th{text-align:right}.fin th:first-child{text-align:left}
+.fin td{text-align:right}.fin td:first-child{text-align:left}
+.fin .sub td{border-top:1px solid var(--linen);color:var(--ember);font-weight:600}
+.fin .tot td{border-top:2px solid var(--ember);color:var(--ink);font-weight:700;font-size:14px}
+.fin .div td{border:none;height:8px;background:none}
+.fin .sec td{color:var(--slate);font-size:9px;text-transform:uppercase;letter-spacing:0.18em;padding-top:16px;background:none;font-weight:500}
+.fin .hl-row td{background:var(--stone);color:var(--ember);font-weight:600}
+ul.s{list-style:none;padding:0;margin:10px 0 16px}
+ul.s li{padding:7px 0 7px 16px;position:relative;border-bottom:1px solid var(--linen);color:var(--walnut);font-size:13px;font-weight:300}
+ul.s li:last-child{border-bottom:none}
+ul.s li::before{content:'—';position:absolute;left:0;color:var(--ember);font-size:11px}
+.cite{font-size:11px;font-weight:200;color:var(--slate);margin-top:4px;padding-left:10px;border-left:1px solid var(--linen);display:block}
+.rh{color:#7a1a1a;font-weight:600}.rm{color:#7a4a10;font-weight:600}.rl{color:var(--green);font-weight:600}
+.df{margin-top:80px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.df span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">The Ember House<span>est. 2026</span></div>
+  <div class="nav-links">
+    <button onclick="show('cover')" class="active" id="btn-cover">Overview</button>
+    <button onclick="show('exec')" id="btn-exec">Exec Summary</button>
+    <button onclick="show('market')" id="btn-market">Market</button>
+    <button onclick="show('model')" id="btn-model">Business Model</button>
+    <button onclick="show('ops')" id="btn-ops">Operations</button>
+    <button onclick="show('capex')" id="btn-capex">CapEx</button>
+    <button onclick="show('financials')" id="btn-financials">Financials</button>
+    <button onclick="show('risk')" id="btn-risk">Risk</button>
+    <button onclick="show('payback')" id="btn-payback">Payback &amp; Exit</button>
+    <button onclick="show('workshops')" id="btn-workshops">Workshops</button>
+  </div>
+</nav>
+<main>
+<div class="section active" id="section-cover">
+  <div class="cover">
+    <div class="cover-eyebrow">Confidential Investment Memorandum &mdash; Ontario, Canada &mdash; 2026</div>
+    <div class="cover-title">The Ember<br><span>House</span></div>
+    <div class="cover-subtitle">A Private Members&rsquo; Retreat &amp; Play Space &mdash; Orangeville&ndash;Caledon&ndash;Amaranth, Ontario</div>
+    <div class="cover-rule"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-cell"><div class="label">Total Startup Capital</div><div class="value">$67,499</div><div class="sub">CapEx + First/Last Rent + On-Ramp</div></div>
+      <div class="cover-meta-cell"><div class="label">Year 1 Projected Revenue</div><div class="value">$273,600</div><div class="sub">Dual revenue streams</div></div>
+      <div class="cover-meta-cell"><div class="label">3-Year IRR</div><div class="value">92.30%</div><div class="sub">Internal Rate of Return</div></div>
+    </div>
+    <div class="cover-statement">
+      <p>The Ember House is a first-of-its-kind private retreat and short-term rental space in rural Ontario, purpose-built to serve the province&rsquo;s growing Ethical Non-Monogamy (ENM), Polyamory, and Kink communities. The business offers two primary revenue streams &mdash; curated weekend group retreats and private weekday room bookings &mdash; with workshop and education events as a third upside stream.</p>
+      <p>The venue features a fully outfitted lower-level play space alongside five private rooms appointed with bespoke custom-fabricated steel bed frames with integrated bondage attachment points. The upper level is designed as a warm social lounge. The space operates under a strict consent-first framework, serving vetted consenting adults aged 21 and over exclusively.</p>
+      <p>This document is prepared for prospective investors and presents the business model, market opportunity, capital requirements, operational framework, and three-year financial projections.</p>
+    </div>
+    <div class="cover-footer"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+  </div>
+</div>
+<div class="section" id="section-exec">
+  <div class="sh"><div class="sh-num">Section 01</div><div class="sh-rule"></div><div class="sh-title">Executive Summary</div><div class="sh-intro">A high-level overview of the opportunity, the model, and what makes The Ember House a compelling investment.</div></div>
+  <h3>The Opportunity</h3>
+  <p>Ontario is home to one of Canada&rsquo;s largest ENM, Polyamory, and Kink communities. Despite this scale, the community has virtually no access to purpose-built, private, professionally maintained play spaces or retreat venues. The Ember House fills this gap &mdash; a dedicated, consent-forward, fully equipped private venue in rural Ontario.</p>
+  <h3>The Business</h3>
+  <div class="grid-2">
+    <div class="card"><div class="card-title">Weekend Group Retreats</div><p>Friday&ndash;Sunday curated group events for 8&ndash;16 consenting adults. 24 events per year at <strong>$400 per attendee</strong>. Full venue exclusive access for each group.</p></div>
+    <div class="card"><div class="card-title">Weekday Private Room Rentals</div><p>Five fully outfitted private rooms for couple bookings. Custom steel bondage bed frames, luxury amenities. <strong>$160 per session</strong>, targeting 15 sessions per week.</p></div>
+  </div>
+  <h3>The Investment Ask</h3>
+  <div class="hl"><h4>Total Startup Capital: $67,498.73</h4><p><strong>CapEx ($40,235)</strong> &mdash; renovation, play space equipment, and five room fit-outs. <strong>First &amp; Last Rent ($15,000)</strong> required before opening. <strong>On-Ramp Costs ($12,263)</strong> covering 6 weeks of overhead during setup. Investor receives <strong>60% of Net Cash Flow</strong>. Year 1 investor return: <strong>$49,861</strong>. Full capital recovery at <strong>Month 10</strong>. 3-Year IRR: <strong>92.30%</strong>.</p></div>
+  <div class="grid-3">
+    <div class="stat-box"><div class="num">$83,101</div><div class="lbl">Year 1 Net Cash Flow</div></div>
+    <div class="stat-box"><div class="num">$163,800</div><div class="lbl">Year 2 Net Cash Flow</div></div>
+    <div class="stat-box"><div class="num">$177,660</div><div class="lbl">Year 3 Net Cash Flow</div></div>
+  </div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-market">
+  <div class="sh"><div class="sh-num">Section 02</div><div class="sh-rule"></div><div class="sh-title">Market Research</div><div class="sh-intro">The ENM, Polyamory, and Kink communities in Ontario represent a large, underserved, and financially active demographic with virtually no dedicated physical venue infrastructure.</div></div>
+  <h3>The ENM &amp; Polyamory Landscape in Ontario</h3>
+  <ul class="s">
+    <li>A 2021 YouGov study found approximately <strong>1 in 5 Americans</strong> had engaged in consensual non-monogamy &mdash; broadly consistent with Canadian trends.<br><span class="cite">YouGov / Kinsey Institute, 2021. doi.org/10.1080/00224499.2019.1638234</span></li>
+    <li>The <strong>Toronto Polyamory Meetup</strong> group ranks among the largest polyamory communities in North America.<br><span class="cite">Meetup.com &mdash; Toronto Polyamory Group, observed membership data 2022&ndash;2024</span></li>
+    <li><strong>FetLife</strong> lists Ontario as one of its highest-density Canadian user regions, with tens of thousands of registered profiles.<br><span class="cite">FetLife.com regional browse data, September 2026. FetLife: 10M+ global users (Vice Media, 2023)</span></li>
+    <li>Ontario hosts <strong>Toronto Leather Pride</strong>, <strong>Nuit Noire</strong>, and dozens of private dungeon events year-round.<br><span class="cite">FetLife event listings, Ontario region; TorontoLeatherPride.com</span></li>
+    <li>A 2016 Journal of Sex Research study found <strong>~4% of Canadians</strong> actively practice CNM, with a further 20% expressing interest.<br><span class="cite">Haupert et al., Journal of Sex Research, 2016. Vol. 54(2)</span></li>
+  </ul>
+  <div class="grid-3">
+    <div class="stat-box"><div class="num">~460,000</div><div class="lbl">Estimated Active CNM/ENM Adults in Ontario</div></div>
+    <div class="stat-box"><div class="num">~2.3M</div><div class="lbl">Expressed Interest in CNM</div></div>
+    <div class="stat-box"><div class="num">~90 min</div><div class="lbl">Drive Time from Downtown Toronto</div></div>
+  </div>
+  <h3>Comparable US Market Pricing (converted to CAD)</h3>
+  <table><thead><tr><th>Event / Venue Type</th><th>Location</th><th>USD Rate</th><th class="tr">CAD Equivalent</th></tr></thead><tbody>
+    <tr><td>Kinky Kollege Weekend</td><td>Chicago, IL</td><td>$200&ndash;$350/person</td><td class="tr ta">$275&ndash;$483</td></tr>
+    <tr><td>COPE Event</td><td>Various US</td><td>$250&ndash;$400/person</td><td class="tr ta">$345&ndash;$552</td></tr>
+    <tr><td>Dark Odyssey Surrender</td><td>Maryland</td><td>$400&ndash;$600/person</td><td class="tr ta">$552&ndash;$828</td></tr>
+    <tr><td>Tryst Network Retreat</td><td>Various US</td><td>$300&ndash;$500/person</td><td class="tr ta">$414&ndash;$690</td></tr>
+    <tr><td>Private Dungeon Weekend</td><td>Northeast US</td><td>$800&ndash;$1,500/night</td><td class="tr ta">$1,104&ndash;$2,070</td></tr>
+  </tbody></table>
+  <div class="hl"><h4>No Equivalent Venue Exists in Ontario</h4><p>As of 2026, no residential-format, purpose-built private play space and retreat venue operates in Ontario outside major urban centres. The Orangeville&ndash;Caledon&ndash;Amaranth corridor has zero venues of this type, despite sitting within 90 minutes of over 6 million people.</p></div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-model">
+  <div class="sh"><div class="sh-num">Section 03</div><div class="sh-rule"></div><div class="sh-title">Business Model</div><div class="sh-intro">Two complementary revenue streams maximise utilisation across seven days a week.</div></div>
+  <h3>Revenue Stream 1 &mdash; Weekend Group Retreats</h3>
+  <div class="card"><p><strong>Format:</strong> Friday evening check-in through Sunday checkout. Entire property reserved exclusively for the retreat group. Pre-vetted, consent-framework governed, participants aged 21+.</p><p><strong>Pricing:</strong> $400 per attendee. <strong>Variable Costs:</strong> $25 per attendee &mdash; consumables, laundry, and lodging-related costs. Guests provide their own meals.</p></div>
+  <table><thead><tr><th>Item</th><th class="tr">Per Event</th><th class="tr">Annual (24 Events)</th></tr></thead><tbody>
+    <tr><td>Gross Revenue (16 &times; $400)</td><td class="tr ta">$6,400</td><td class="tr ta">$153,600</td></tr>
+    <tr><td>Variable Costs (16 &times; $25)</td><td class="tr">($400)</td><td class="tr">($9,600)</td></tr>
+    <tr><td><strong>Net Revenue</strong></td><td class="tr ta"><strong>$6,000</strong></td><td class="tr ta"><strong>$144,000</strong></td></tr>
+  </tbody></table>
+  <h3>Revenue Stream 2 &mdash; Weekday Private Room Bookings</h3>
+  <div class="card"><p><strong>Rate:</strong> $160 per session. <strong>Target:</strong> 15 sessions per week across 50 operational weeks. Five rooms, fresh linens and full turnover between guests.</p></div>
+  <h3>Revenue Split &mdash; Applied to Net Cash Flow</h3>
+  <div class="grid-2">
+    <div class="stat-box"><div class="num">60%</div><div class="lbl">Investor Share of Net Cash Flow</div></div>
+    <div class="stat-box"><div class="num">40%</div><div class="lbl">Operator Share of Net Cash Flow</div></div>
+  </div>
+  <h3>Three-Year Revenue Growth</h3>
+  <table><thead><tr><th>Revenue Stream</th><th class="tr">Year 1</th><th class="tr">Year 2</th><th class="tr">Year 3</th></tr></thead><tbody>
+    <tr><td>Weekday Room Rentals</td><td class="tr">$120,000</td><td class="tr">$126,000</td><td class="tr">$132,300</td></tr>
+    <tr><td>Weekend Retreat Revenue</td><td class="tr">$153,600</td><td class="tr">$161,280</td><td class="tr">$169,344</td></tr>
+    <tr><td><strong>Total Gross Revenue</strong></td><td class="tr ta"><strong>$273,600</strong></td><td class="tr ta"><strong>$287,280</strong></td><td class="tr ta"><strong>$301,644</strong></td></tr>
+  </tbody></table>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-ops">
+  <div class="sh"><div class="sh-num">Section 04</div><div class="sh-rule"></div><div class="sh-title">Operations</div><div class="sh-intro">A professionally managed operational framework is the foundation of community trust, guest safety, and long-term business viability.</div></div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title">Upper Level &mdash; The Social Lounge</div><ul class="s"><li>Full lounge seating &mdash; sofas, chairs, common tables</li><li>Large format movie screen and projector</li><li>Karaoke setup &mdash; turnkey ready</li><li>Mood lighting &mdash; dimmable, scene-programmable</li><li>Audio system &mdash; ambient sound throughout</li><li>Kitchen and dining facilities</li><li>Multiple washrooms with bidet fixtures</li><li>Five private rooms off the upper level</li></ul></div>
+    <div class="card"><div class="card-title">Lower Level &mdash; The Play Space</div><ul class="s"><li>4&times; Boneless flip-out sofas on raised platforms</li><li>2&times; St. Andrew&rsquo;s Crosses (custom welded steel)</li><li>2&times; Spanking benches (custom welded steel)</li><li>2&times; Sex swing frames with swings</li><li>Upholstered wedges, floor cushions, lounge chairs</li><li>7&times; 5-piece padded leather bondage restraint sets</li><li>Mood lighting &mdash; full dimming and scene control</li><li>Audio system &mdash; dedicated atmosphere sound</li><li>Towel stations throughout</li></ul></div>
+  </div>
+  <div class="hl"><h4>Sanitization &mdash; Micrylium BioText</h4><p>The Ember House has an established working relationship with <strong>Micrylium Laboratories</strong>. Their BioText product line is formulated for porous and textile surfaces. BioText is applied by the operator to all porous surfaces as part of post-event cleaning protocols. Full mattress and linen turnover between every private room session. All bondage restraint equipment cleaned and sanitized between uses.</p></div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-capex">
+  <div class="sh"><div class="sh-num">Section 05</div><div class="sh-rule"></div><div class="sh-title">Capital Expenditure</div><div class="sh-intro">A detailed breakdown of the one-time setup investment required to bring the property to full operational standard.</div></div>
+  <div class="grid-3">
+    <div class="stat-box"><div class="num">$12,100</div><div class="lbl">Renovations</div></div>
+    <div class="stat-box"><div class="num">$9,725</div><div class="lbl">Play Space Equipment</div></div>
+    <div class="stat-box"><div class="num">$18,410</div><div class="lbl">Room Fit-Out &mdash; 5 Rooms</div></div>
+  </div>
+  <h3>Renovation &mdash; $12,100</h3>
+  <table><thead><tr><th>Item</th><th>Qty</th><th class="tr">Unit</th><th class="tr">Total</th></tr></thead><tbody>
+    <tr><td>Main Floor Paint &amp; Supplies</td><td>1</td><td class="tr">$2,000</td><td class="tr ta">$2,000</td></tr>
+    <tr><td>Lower Floor Paint &amp; Supplies</td><td>1</td><td class="tr">$2,000</td><td class="tr ta">$2,000</td></tr>
+    <tr><td>Room Lighting (Dimmable Fixtures)</td><td>2</td><td class="tr">$250</td><td class="tr ta">$500</td></tr>
+    <tr><td>D&eacute;cor (Mirrors, Accents)</td><td>2</td><td class="tr">$1,200</td><td class="tr ta">$2,400</td></tr>
+    <tr><td>Washroom Fixtures (Bidet, Dispensers)</td><td>4</td><td class="tr">$300</td><td class="tr ta">$1,200</td></tr>
+    <tr><td>Upper Level Common Furnishings</td><td>1</td><td class="tr">$3,000</td><td class="tr ta">$3,000</td></tr>
+    <tr><td>Lower Level Common Furnishings</td><td>1</td><td class="tr">$1,000</td><td class="tr ta">$1,000</td></tr>
+    <tr class="sub"><td colspan="3"><strong>Total</strong></td><td class="tr"><strong>$12,100</strong></td></tr>
+  </tbody></table>
+  <h3>Play Space Equipment &mdash; $9,725</h3>
+  <table><thead><tr><th>Item</th><th>Qty</th><th class="tr">Unit</th><th class="tr">Total</th></tr></thead><tbody>
+    <tr><td>Boneless Flip-Out Sofas</td><td>4</td><td class="tr">$500</td><td class="tr ta">$2,000</td></tr>
+    <tr><td>Raised Wood Platforms</td><td>3</td><td class="tr">$450</td><td class="tr ta">$1,350</td></tr>
+    <tr><td>Upholstered Foam Wedges</td><td>5</td><td class="tr">$75</td><td class="tr ta">$375</td></tr>
+    <tr><td>Spanking Benches (custom welded)</td><td>2</td><td class="tr">$450</td><td class="tr ta">$900</td></tr>
+    <tr><td>St. Andrew&rsquo;s Crosses (custom welded)</td><td>2</td><td class="tr">$350</td><td class="tr ta">$700</td></tr>
+    <tr><td>Sex Swing Frames with Swings</td><td>2</td><td class="tr">$750</td><td class="tr ta">$1,500</td></tr>
+    <tr><td>Boneless Floor Lounge Chairs</td><td>2</td><td class="tr">$250</td><td class="tr ta">$500</td></tr>
+    <tr><td>Large Upholstered Floor Cushions</td><td>6</td><td class="tr">$50</td><td class="tr ta">$300</td></tr>
+    <tr><td>5-Piece Leather Bondage Restraint Sets</td><td>7</td><td class="tr">$150</td><td class="tr ta">$1,050</td></tr>
+    <tr><td>Bath Towels</td><td>60</td><td class="tr">$15</td><td class="tr ta">$900</td></tr>
+    <tr><td>Face Towels</td><td>120</td><td class="tr">$1.25</td><td class="tr ta">$150</td></tr>
+    <tr class="sub"><td colspan="3"><strong>Total</strong></td><td class="tr"><strong>$9,725</strong></td></tr>
+  </tbody></table>
+  <h3>Room Fit-Out &mdash; $18,410.45 (5 Rooms @ $3,682.09)</h3>
+  <table><thead><tr><th>Item</th><th>Qty</th><th class="tr">Unit</th><th class="tr">Per Room</th></tr></thead><tbody>
+    <tr><td>Custom Steel Bondage Bed Frame</td><td>1</td><td class="tr">$1,492.09</td><td class="tr ta">$1,492.09</td></tr>
+    <tr><td>Hybrid Foam/Spring Mattress</td><td>1</td><td class="tr">$450.00</td><td class="tr ta">$450.00</td></tr>
+    <tr><td>Hotel Hybrid Fill Pillows</td><td>4</td><td class="tr">$60.00</td><td class="tr ta">$240.00</td></tr>
+    <tr><td>Duvet Insert</td><td>1</td><td class="tr">$100.00</td><td class="tr ta">$100.00</td></tr>
+    <tr><td>Waterproof Mattress Liner</td><td>1</td><td class="tr">$45.00</td><td class="tr ta">$45.00</td></tr>
+    <tr><td>Satin 4-Piece Sheet Sets</td><td>2</td><td class="tr">$100.00</td><td class="tr ta">$200.00</td></tr>
+    <tr><td>Bedside Tables</td><td>2</td><td class="tr">$100.00</td><td class="tr ta">$200.00</td></tr>
+    <tr><td>Side Chair</td><td>1</td><td class="tr">$350.00</td><td class="tr ta">$350.00</td></tr>
+    <tr><td>Standing Movable Mirror</td><td>1</td><td class="tr">$150.00</td><td class="tr ta">$150.00</td></tr>
+    <tr><td>Blackout Curtain Set</td><td>1</td><td class="tr">$125.00</td><td class="tr ta">$125.00</td></tr>
+    <tr><td>Static Privacy Window Film</td><td>1</td><td class="tr">$80.00</td><td class="tr ta">$80.00</td></tr>
+    <tr><td>Miscellaneous D&eacute;cor</td><td>1</td><td class="tr">$250.00</td><td class="tr ta">$250.00</td></tr>
+    <tr class="sub"><td colspan="3"><strong>Per Room Total</strong></td><td class="tr"><strong>$3,682.09</strong></td></tr>
+    <tr class="tot"><td colspan="3"><strong>5 Rooms Total</strong></td><td class="tr"><strong>$18,410.45</strong></td></tr>
+  </tbody></table>
+  <div class="hl"><h4>Total Startup Capital</h4>
+    <div class="grid-3" style="margin-top:14px">
+      <div class="stat-box"><div class="num">$40,235</div><div class="lbl">Total CapEx</div></div>
+      <div class="stat-box"><div class="num">$15,000</div><div class="lbl">First &amp; Last Month Rent</div></div>
+      <div class="stat-box"><div class="num">$12,263</div><div class="lbl">6-Week On-Ramp Overhead</div></div>
+    </div>
+    <div class="stat-box" style="margin-top:14px;border-color:var(--ember)"><div class="num" style="font-size:36px">$67,498.73</div><div class="lbl">Total Startup Capital Required &mdash; Full Investor Ask</div></div>
+  </div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-financials">
+  <div class="sh"><div class="sh-num">Section 06</div><div class="sh-rule"></div><div class="sh-title">Financial Projections</div><div class="sh-intro">Three-year pro forma with 5% annual revenue growth. Splits applied to Net Cash Flow after full startup capital recovery in Year 1.</div></div>
+  <h3>Fixed Operating Costs</h3>
+  <table><thead><tr><th>Item</th><th class="tr">Monthly</th><th class="tr">Annual</th></tr></thead><tbody>
+    <tr><td>Property Rent</td><td class="tr">$7,500</td><td class="tr ta">$90,000</td></tr>
+    <tr><td>Internet, Security &amp; Streaming</td><td class="tr">$250</td><td class="tr ta">$3,000</td></tr>
+    <tr><td>Utilities (Hydro, Water, Gas)</td><td class="tr">$500</td><td class="tr ta">$6,000</td></tr>
+    <tr><td>Property Maintenance &amp; Cleaning</td><td class="tr">$600</td><td class="tr ta">$7,200</td></tr>
+    <tr class="sub"><td><strong>Total Fixed Overhead</strong></td><td class="tr"><strong>$8,850</strong></td><td class="tr"><strong>$106,200</strong></td></tr>
+  </tbody></table>
+  <h3>Three-Year Pro Forma P&amp;L</h3>
+  <table class="fin"><thead><tr><th style="text-align:left">Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead><tbody>
+    <tr class="sec"><td colspan="4">Revenue</td></tr>
+    <tr><td>Weekday Room Rental Revenue</td><td>$120,000</td><td>$126,000</td><td>$132,300</td></tr>
+    <tr><td>Weekend Retreat Revenue</td><td>$153,600</td><td>$161,280</td><td>$169,344</td></tr>
+    <tr class="sub"><td>Total Gross Revenue</td><td>$273,600</td><td>$287,280</td><td>$301,644</td></tr>
+    <tr class="div"><td colspan="4"></td></tr>
+    <tr class="sec"><td colspan="4">Expenses</td></tr>
+    <tr><td>Retreat Variable Costs</td><td>($9,600)</td><td>($10,080)</td><td>($10,584)</td></tr>
+    <tr><td>Consumables (Annual)</td><td>($7,200)</td><td>($7,200)</td><td>($7,200)</td></tr>
+    <tr><td>Fixed Overhead</td><td>($106,200)</td><td>($106,200)</td><td>($106,200)</td></tr>
+    <tr class="sub"><td>Total Expenses</td><td>($123,000)</td><td>($123,480)</td><td>($123,984)</td></tr>
+    <tr class="div"><td colspan="4"></td></tr>
+    <tr class="sub"><td>Net Operating Income (NOI)</td><td>$150,600</td><td>$163,800</td><td>$177,660</td></tr>
+    <tr class="div"><td colspan="4"></td></tr>
+    <tr class="sec"><td colspan="4">Startup Costs &mdash; Year 1 Only</td></tr>
+    <tr><td>CapEx</td><td>($40,235)</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>First &amp; Last Month Rent</td><td>($15,000)</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>On-Ramp Operating Costs</td><td>($12,263)</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr class="sub"><td>Total Startup Investment</td><td>($67,499)</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr class="div"><td colspan="4"></td></tr>
+    <tr class="tot"><td>Net Cash Flow (NCF)</td><td>$83,101</td><td>$163,800</td><td>$177,660</td></tr>
+    <tr class="div"><td colspan="4"></td></tr>
+    <tr class="sec"><td colspan="4">Distributions</td></tr>
+    <tr class="hl-row"><td>Investor Share (60%)</td><td>$49,861</td><td>$98,280</td><td>$106,596</td></tr>
+    <tr><td>Operator Share (40%)</td><td>$33,241</td><td>$65,520</td><td>$71,064</td></tr>
+  </tbody></table>
+  <div class="grid-3">
+    <div class="stat-box"><div class="num">$49,861</div><div class="lbl">Investor Return &mdash; Year 1</div></div>
+    <div class="stat-box"><div class="num">$98,280</div><div class="lbl">Investor Return &mdash; Year 2</div></div>
+    <div class="stat-box"><div class="num">$106,596</div><div class="lbl">Investor Return &mdash; Year 3</div></div>
+  </div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-risk">
+  <div class="sh"><div class="sh-num">Section 07</div><div class="sh-rule"></div><div class="sh-title">Risk Analysis &amp; Mitigation</div><div class="sh-intro">A transparent assessment of principal risks and mitigation strategies.</div></div>
+  <table><thead><tr><th>Risk</th><th>Level</th><th>Mitigation</th></tr></thead><tbody>
+    <tr><td><strong>Lease termination</strong></td><td><span class="rh">High</span></td><td>Written landlord consent; min. 2-year lease; rural discretion buffer</td></tr>
+    <tr><td><strong>Low retreat occupancy</strong></td><td><span class="rm">Medium</span></td><td>Break-even ~6 attendees/event. Weekday revenue provides independent floor.</td></tr>
+    <tr><td><strong>Guest injury or incident</strong></td><td><span class="rm">Medium</span></td><td>Standards of Practice, waivers, equipment inspection, consent monitor, CGL insurance</td></tr>
+    <tr><td><strong>Zoning enforcement</strong></td><td><span class="rm">Medium</span></td><td>Municipal consultation; private members club structure; no signage</td></tr>
+    <tr><td><strong>Privacy breach</strong></td><td><span class="rm">Medium</span></td><td>Closed referral via kinkbnb.com; no-photography policy; NDA provisions</td></tr>
+    <tr><td><strong>Weekday demand shortfall</strong></td><td><span class="rl">Low&ndash;Med</span></td><td>At 50% occupancy, combined revenue still exceeds fixed overhead.</td></tr>
+    <tr><td><strong>Operator burnout</strong></td><td><span class="rl">Low</span></td><td>$600/month cleaning support; 2 retreats/month; booking automated via kinkbnb.com</td></tr>
+  </tbody></table>
+  <h3>Scenario Analysis</h3>
+  <table><thead><tr><th>Scenario</th><th class="tr">Annual Revenue</th><th class="tr">Year 1 NCF</th><th class="tr">Investor Return</th></tr></thead><tbody>
+    <tr><td><strong>Base Case</strong></td><td class="tr">$273,600</td><td class="tr">$83,101</td><td class="tr ta">$49,861</td></tr>
+    <tr><td><strong>Conservative</strong> &mdash; 75% retreat, 10 sessions/wk</td><td class="tr">~$210,000</td><td class="tr">~$46,000</td><td class="tr ta">~$27,600</td></tr>
+    <tr><td><strong>Stress Case</strong> &mdash; 50% retreat, 7 sessions/wk</td><td class="tr">~$163,000</td><td class="tr">~$5,000</td><td class="tr tm">~$3,000</td></tr>
+    <tr><td><strong>Upside</strong> &mdash; Full + 3 retreats/mo Y2+</td><td class="tr">~$320,000+</td><td class="tr">~$190,000+</td><td class="tr ta">~$114,000+</td></tr>
+  </tbody></table>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-payback">
+  <div class="sh"><div class="sh-num">Section 08</div><div class="sh-rule"></div><div class="sh-title">Payback Period &amp; Exit Strategy</div><div class="sh-intro">When the investor recoups their capital, and how they exit the investment when the time comes.</div></div>
+  <div class="grid-3">
+    <div class="stat-box"><div class="num">Month 10</div><div class="lbl">Full Capital Recovery</div></div>
+    <div class="stat-box"><div class="num">92.30%</div><div class="lbl">3-Year Internal Rate of Return</div></div>
+    <div class="stat-box"><div class="num">3.71&times;</div><div class="lbl">Total Return Multiple &mdash; 3 Years</div></div>
+  </div>
+  <h3>Monthly Cash Flow &amp; Payback Schedule</h3>
+  <table><thead><tr><th>Month</th><th class="tr">Gross Revenue</th><th class="tr">Expenses</th><th class="tr">Net CF</th><th class="tr">Investor (60%)</th><th class="tr">Cumulative</th></tr></thead><tbody>
+    <tr><td>1 &mdash; On-Ramp</td><td class="tr">$0</td><td class="tr">$8,176</td><td class="tr">($8,176)</td><td class="tr">($4,905)</td><td class="tr tm">($72,404)</td></tr>
+    <tr><td>2 &mdash; Ramp-Up</td><td class="tr">$13,029</td><td class="tr">$9,361</td><td class="tr">$3,668</td><td class="tr">$2,201</td><td class="tr tm">($70,203)</td></tr>
+    <tr><td>3</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($60,897)</td></tr>
+    <tr><td>4</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($51,591)</td></tr>
+    <tr><td>5</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($42,284)</td></tr>
+    <tr><td>6</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($32,978)</td></tr>
+    <tr><td>7</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($23,671)</td></tr>
+    <tr><td>8</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($14,365)</td></tr>
+    <tr><td>9</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr tm">($5,058)</td></tr>
+    <tr class="hl-row"><td><strong>10 &mdash; Fully Recovered</strong></td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr"><strong>$9,306</strong></td><td class="tr"><strong>$4,248</strong></td></tr>
+    <tr><td>11</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr" style="color:var(--green)">$13,555</td></tr>
+    <tr><td>12</td><td class="tr">$26,057</td><td class="tr">$10,546</td><td class="tr">$15,511</td><td class="tr">$9,306</td><td class="tr" style="color:var(--green)">$22,861</td></tr>
+  </tbody></table>
+  <h3>Sensitivity Analysis &mdash; Investor Net Cash Flow, Year 1</h3>
+  <table><thead><tr><th>Sessions/Week &darr; &nbsp; Ticket Price &rarr;</th><th class="tr">$350/person</th><th class="tr">$400/person</th><th class="tr">$450/person</th></tr></thead><tbody>
+    <tr><td>10 sessions/week</td><td class="tr">$20,000</td><td class="tr">$30,000</td><td class="tr">$40,000</td></tr>
+    <tr class="hl-row"><td><strong>15 sessions/week &mdash; Base Case</strong></td><td class="tr">$35,000</td><td class="tr"><strong>$49,861</strong></td><td class="tr">$65,000</td></tr>
+    <tr><td>20 sessions/week</td><td class="tr">$50,000</td><td class="tr">$70,000</td><td class="tr">$90,000</td></tr>
+    <tr><td>25 sessions/week</td><td class="tr">$65,000</td><td class="tr">$90,000</td><td class="tr">$115,000</td></tr>
+  </tbody></table>
+  <h3>Exit Strategy</h3>
+  <div class="card"><div class="card-title">Option A &mdash; Operator Buyout (Preferred)</div><p>After Month 18, operator may buy out investor stake at <strong>18&times; trailing 6-month monthly average distribution</strong>.</p></div>
+  <div class="card"><div class="card-title">Option B &mdash; Stake Transfer</div><p>Investor may transfer 60% revenue share to a qualified third party after Month 12. Operator retains <strong>right of first refusal</strong>.</p></div>
+  <div class="card"><div class="card-title">Option C &mdash; Agreed Wind-Down</div><p>Liquidation proceeds distributed 60/40 in line with the revenue split.</p></div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+<div class="section" id="section-workshops">
+  <div class="sh"><div class="sh-num">Section 09</div><div class="sh-rule"></div><div class="sh-title">Workshop &amp; Education Events</div><div class="sh-intro">A natural third revenue stream with low overhead, high community demand, and zero conflict with the core booking model.</div></div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title">Shibari &amp; Rope Bondage</div><p>Beginner through intermediate workshops led by a vetted community rigger.</p><p style="font-size:12px;color:var(--slate)">3&ndash;4 hrs &middot; 8&ndash;12 people &middot; $80&ndash;$120/person</p></div>
+    <div class="card"><div class="card-title">Kink Education Nights</div><p>Topical workshops on BDSM fundamentals, impact play safety, power exchange, and aftercare.</p><p style="font-size:12px;color:var(--slate)">2&ndash;3 hrs &middot; 10&ndash;16 people &middot; $50&ndash;$80/person</p></div>
+    <div class="card"><div class="card-title">Consent &amp; Communication</div><p>Facilitated sessions on consent negotiation, boundary-setting, and ENM communication.</p><p style="font-size:12px;color:var(--slate)">2&ndash;3 hrs &middot; 10&ndash;20 people &middot; $50&ndash;$75/person</p></div>
+    <div class="card"><div class="card-title">ENM Relationship Retreats</div><p>Day-long immersive experiences on relationship skills in non-monogamous structures.</p><p style="font-size:12px;color:var(--slate)">Full day &middot; 8&ndash;16 people &middot; $100&ndash;$150/person</p></div>
+  </div>
+  <table><thead><tr><th>Workshop Type</th><th class="tr">Price/Person</th><th class="tr">Capacity</th><th class="tr">Gross/Event</th><th class="tr">Venue Share (40%)</th></tr></thead><tbody>
+    <tr><td>Shibari / Rope Bondage</td><td class="tr">$100</td><td class="tr">10</td><td class="tr">$1,000</td><td class="tr ta">$400</td></tr>
+    <tr><td>Kink Education Night</td><td class="tr">$65</td><td class="tr">14</td><td class="tr">$910</td><td class="tr ta">$364</td></tr>
+    <tr><td>Consent &amp; Communication</td><td class="tr">$60</td><td class="tr">16</td><td class="tr">$960</td><td class="tr ta">$384</td></tr>
+    <tr><td>ENM Relationship Retreat</td><td class="tr">$125</td><td class="tr">12</td><td class="tr">$1,500</td><td class="tr ta">$600</td></tr>
+  </tbody></table>
+  <div class="hl"><h4>Conservative Year 1 Workshop Revenue &mdash; Pure Upside</h4>
+    <div class="stat-box" style="margin-top:14px;border-color:var(--ember)"><div class="num" style="font-size:32px">$18,576</div><div class="lbl">Estimated Additional Annual Revenue &mdash; adds ~$11,146/year to investor distributions</div></div>
+  </div>
+  <div class="df"><span>Confidential &mdash; For Authorized Recipients Only</span><span>The Ember House &copy; 2026</span></div>
+</div>
+</main>
+<script>
+function show(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));document.getElementById('section-'+id).classList.add('active');document.getElementById('btn-'+id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Standards of Practice</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;
+  --ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;
+  --ember:#7c3028;--copper:#c4956a;--char:#3d2820;
+  --green:#2a5c3a;--red:#7a1a1a;--amber:#8a5a10;
+}
+body{background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;line-height:1.75}
+nav{position:fixed;top:0;left:0;right:0;background:var(--char);z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav-brand{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.45);font-size:10px;margin-left:8px;letter-spacing:0.1em}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap}
+.nav-links button{background:none;border:none;color:rgba(242,237,228,0.4);font-size:9px;font-family:'Outfit',sans-serif;font-weight:400;cursor:pointer;padding:5px 10px;transition:all 0.18s;text-transform:uppercase;letter-spacing:0.12em}
+.nav-links button:hover,.nav-links button.active{color:var(--sand);background:var(--ember)}
+main{margin-top:50px;max-width:940px;margin-left:auto;margin-right:auto;padding:64px 52px 120px}
+.section{display:none;animation:fadeIn 0.3s ease}.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.cover{padding:56px 0 0}
+.cover-eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--slate);margin-bottom:20px}
+.cover-tag{display:inline-block;border:1px solid var(--ember);color:var(--ember);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:5px 14px;margin-bottom:28px}
+.cover-title{font-size:80px;font-weight:900;line-height:0.88;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px}
+.cover-title span{color:var(--ember)}
+.cover-subtitle{font-size:14px;font-weight:300;color:var(--ash);margin-bottom:8px;letter-spacing:0.02em}
+.cover-version{font-size:10px;font-weight:400;color:var(--slate);letter-spacing:0.12em;margin-bottom:40px}
+.cover-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:40px}
+.cover-statement{border-left:2px solid var(--ember);padding:24px 28px;background:var(--stone);font-size:14px;font-weight:300;line-height:1.8;color:var(--walnut)}
+.cover-statement p+p{margin-top:12px}
+.cover-statement strong{font-weight:600;color:var(--ink)}
+.cover-footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.cover-footer span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+.sh{margin-bottom:44px}
+.sh-num{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:8px}
+.sh-rule{width:100%;height:1px;background:var(--linen);margin-bottom:20px}
+.sh-title{font-size:46px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-0.02em;margin-bottom:12px}
+.sh-intro{font-size:13px;font-weight:300;color:var(--ash);max-width:640px;line-height:1.7}
+h3{font-size:18px;font-weight:700;color:var(--ink);margin:40px 0 14px;letter-spacing:-0.01em}
+h4{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.22em;color:var(--ember);margin:18px 0 8px}
+p{margin-bottom:12px;color:var(--walnut);font-size:14px;font-weight:300}
+strong{font-weight:600;color:var(--ink)}
+.rb{border:1px solid var(--linen);border-left:2px solid var(--ember);margin-bottom:12px;background:var(--offwhite)}
+.rb-header{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--linen)}
+.rb-num{font-size:28px;font-weight:900;color:var(--ember);min-width:30px;line-height:1;letter-spacing:-0.02em}
+.rb-title{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
+.rb-body{padding:14px 20px;font-size:13px;font-weight:300;color:var(--walnut);line-height:1.75}
+.rb-body p{margin-bottom:8px}.rb-body p:last-child{margin-bottom:0}
+.hl{border-left:2px solid var(--ember);padding:18px 22px;background:var(--stone);margin:18px 0}
+.hl.green{border-left-color:var(--green);background:var(--offwhite)}
+.hl.red{border-left-color:var(--red);background:var(--offwhite)}
+.hl.neutral{border-left-color:var(--linen);background:var(--offwhite)}
+.sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.sw-box{padding:24px 18px;text-align:center;border:1px solid var(--linen);background:var(--offwhite)}
+.sw-box.r{border-top:3px solid var(--red)}.sw-box.a{border-top:3px solid var(--amber)}.sw-box.g{border-top:3px solid var(--green)}
+.sw-word{font-size:28px;font-weight:900;line-height:1;margin-bottom:6px;letter-spacing:-0.01em}
+.r .sw-word{color:var(--red)}.a .sw-word{color:var(--amber)}.g .sw-word{color:var(--green)}
+.sw-meaning{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;color:var(--slate);margin-bottom:8px}
+.sw-desc{font-size:12px;font-weight:300;color:var(--walnut);line-height:1.6}
+ul.s{list-style:none;padding:0;margin:10px 0 16px}
+ul.s li{padding:7px 0 7px 16px;position:relative;border-bottom:1px solid var(--linen);color:var(--walnut);font-size:13px;font-weight:300}
+ul.s li:last-child{border-bottom:none}
+ul.s li::before{content:'—';position:absolute;left:0;color:var(--ember);font-size:11px}
+ul.ck{list-style:none;padding:0;margin:10px 0 16px}
+ul.ck li{padding:7px 0 7px 20px;position:relative;border-bottom:1px solid var(--linen);color:var(--walnut);font-size:13px;font-weight:300}
+ul.ck li:last-child{border-bottom:none}
+ul.ck li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:12px;font-weight:600}
+ul.cx{list-style:none;padding:0;margin:10px 0 16px}
+ul.cx li{padding:7px 0 7px 20px;position:relative;border-bottom:1px solid var(--linen);color:var(--walnut);font-size:13px;font-weight:300}
+ul.cx li:last-child{border-bottom:none}
+ul.cx li::before{content:'✕';position:absolute;left:0;color:var(--red);font-size:11px;font-weight:600}
+.so{border:1px solid var(--linen);padding:28px 32px;background:var(--offwhite)}
+.so-line{display:flex;align-items:flex-end;gap:24px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--linen)}
+.so-line:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.so-label{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.18em;color:var(--slate);margin-bottom:8px}
+.so-field{flex:1;border-bottom:1px solid var(--ash);height:30px}
+.so-short{width:160px;border-bottom:1px solid var(--ash);height:30px}
+.df{margin-top:80px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.df span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">The Ember House<span>Standards of Practice</span></div>
+  <div class="nav-links">
+    <button onclick="show('cover')" class="active" id="btn-cover">Cover</button>
+    <button onclick="show('principles')" id="btn-principles">Core Principles</button>
+    <button onclick="show('access')" id="btn-access">Access & Entry</button>
+    <button onclick="show('consent')" id="btn-consent">Consent</button>
+    <button onclick="show('safewords')" id="btn-safewords">Safewords</button>
+    <button onclick="show('conduct')" id="btn-conduct">Conduct</button>
+    <button onclick="show('hygiene')" id="btn-hygiene">Hygiene</button>
+    <button onclick="show('incidents')" id="btn-incidents">Incidents</button>
+    <button onclick="show('acknowledgement')" id="btn-acknowledgement">Acknowledgement</button>
+  </div>
+</nav>
+<main>
+
+<div class="section active" id="section-cover">
+  <div class="cover">
+    <div class="cover-eyebrow">Internal Operating Document &mdash; Not for Distribution</div>
+    <div class="cover-tag">Confidential</div>
+    <div class="cover-title">Standards of<br><span>Practice</span></div>
+    <div class="cover-subtitle">Guest Conduct, Consent &amp; Safety Framework</div>
+    <div class="cover-version">The Ember House &mdash; Version 1.0 &mdash; Effective 2026 &mdash; Orangeville&ndash;Caledon&ndash;Amaranth, Ontario</div>
+    <div class="cover-rule"></div>
+    <div class="cover-statement">
+      <p>The Ember House is a private, members-only retreat and play space built on a foundation of <strong>radical consent, mutual respect, and personal responsibility</strong>. Every person who enters this space &mdash; guest or operator &mdash; is bound by the principles set out in this document.</p>
+      <p>This is not a list of rules imposed from the outside. These are the values that make The Ember House possible. Without them, this space cannot exist. With them, it becomes something rare and extraordinary: <strong>a place where people can explore freely, safely, and with full dignity intact.</strong></p>
+      <p>All guests must read, understand, and sign the Acknowledgement section of this document before accessing the property. This document is distributed at time of booking confirmation and reviewed verbally by the operator at check-in for all retreat events.</p>
+      <p>The Ember House operator reserves the right to remove any guest from the property, at any time, without refund, for any breach of these standards.</p>
+    </div>
+    <div class="cover-footer"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0 &mdash; 2026</span></div>
+  </div>
+</div>
+
+<div class="section" id="section-principles">
+  <div class="sh"><div class="sh-num">Section 01</div><div class="sh-rule"></div><div class="sh-title">Core Principles</div><div class="sh-intro">Everything in this document flows from these five foundational commitments. When in doubt, return here.</div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">1</div><div class="rb-title">Consent Is Everything</div></div><div class="rb-body"><p>Every interaction at The Ember House requires the enthusiastic, ongoing, and revocable consent of all parties involved. Consent given once does not mean consent given always. Consent can be withdrawn at any moment, for any reason, with no explanation required. If you are unsure whether you have consent, you do not have it.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">2</div><div class="rb-title">No Means No. Stop Means Stop.</div></div><div class="rb-body"><p>The words &ldquo;no,&rdquo; &ldquo;stop,&rdquo; &ldquo;wait,&rdquo; and any established safeword must be honoured immediately and without question. Continuing any activity after a clear stop signal constitutes a serious violation and will result in immediate removal from the property.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">3</div><div class="rb-title">Personal Responsibility</div></div><div class="rb-body"><p>Every guest is responsible for their own physical and emotional wellbeing, and for the impact of their actions on others. Know your limits. Communicate them clearly. Check in with your partners. This space only works when everyone takes ownership of their participation.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">4</div><div class="rb-title">Dignity at All Times</div></div><div class="rb-body"><p>Every person in this space deserves to be treated with dignity &mdash; during play, between scenes, in the lounge, and on departure. Judgment, mockery, or unsolicited commentary about another person&rsquo;s body, preferences, or choices will not be tolerated.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">5</div><div class="rb-title">Discretion Is Sacred</div></div><div class="rb-body"><p>The identities, activities, and attendance of all guests are strictly private. What you see here, who you see here, and what happens here does not leave this property in any form &mdash; verbally, photographically, or digitally. Breach of this principle is the most serious violation possible and will result in permanent removal and potential legal action.</p></div></div>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-access">
+  <div class="sh"><div class="sh-num">Section 02</div><div class="sh-rule"></div><div class="sh-title">Access &amp; Entry</div><div class="sh-intro">Who may enter, how access is granted, and what is required before a guest sets foot on the property.</div></div>
+  <h3>Age Requirement</h3>
+  <div class="hl red"><h4>Strict 21+ Policy &mdash; No Exceptions</h4><p>The Ember House is exclusively available to adults aged 21 and over. Government-issued photo identification is required at check-in for every guest, every visit &mdash; regardless of prior attendance. There are no exceptions to this policy under any circumstances.</p></div>
+  <h3>Booking &amp; Verification</h3>
+  <ul class="s">
+    <li>All bookings made through <strong>kinkbnb.com</strong> or private community channels approved by the operator</li>
+    <li>Access is by invitation and booking only &mdash; walk-ins are not permitted under any circumstances</li>
+    <li>Guests must provide their full legal name at time of booking</li>
+    <li>The operator reserves the right to decline or cancel any booking at their sole discretion, with a full refund issued</li>
+    <li>Booking confirmation constitutes agreement to these Standards of Practice</li>
+  </ul>
+  <h3>Check-In Protocol</h3>
+  <ul class="s">
+    <li>All guests must check in with the operator before accessing any area of the property</li>
+    <li>Government-issued ID verified and recorded at check-in</li>
+    <li>Signed Acknowledgement form collected or confirmed digitally prior to arrival</li>
+    <li>For retreat events: verbal orientation covering safewords, consent protocols, and property layout conducted before the event begins</li>
+    <li>Guests who arrive appearing significantly intoxicated will not be admitted and will forfeit their booking fee</li>
+  </ul>
+  <h3>Guest Responsibility for Companions</h3>
+  <p>Each booking guest is responsible for ensuring that all companions they bring have read, understood, and agreed to these Standards of Practice. Introducing an unbriefed guest is a violation by the booking guest.</p>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-consent">
+  <div class="sh"><div class="sh-num">Section 03</div><div class="sh-rule"></div><div class="sh-title">Consent Framework</div><div class="sh-intro">The detailed consent principles that govern all interactions at The Ember House, inside and outside the play space.</div></div>
+  <h3>The FRIES Model</h3>
+  <div class="rb"><div class="rb-header"><div class="rb-num">F</div><div class="rb-title">Freely Given</div></div><div class="rb-body"><p>Consent must be given freely, without pressure, manipulation, coercion, or intoxication. Creating social pressure &mdash; however subtle &mdash; to participate in any activity is a violation of this framework.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">R</div><div class="rb-title">Reversible</div></div><div class="rb-body"><p>Consent can be withdrawn at any time, mid-scene, mid-sentence, or after the fact. A person changing their mind does not owe anyone an explanation. The moment consent is withdrawn, all activity stops immediately.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">I</div><div class="rb-title">Informed</div></div><div class="rb-body"><p>Consent requires honest communication about what is being proposed. Misrepresenting an activity, withholding relevant information, or escalating beyond what was agreed constitutes a violation &mdash; even if the original activity was consented to.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">E</div><div class="rb-title">Enthusiastic</div></div><div class="rb-body"><p>We are looking for an enthusiastic yes &mdash; not the absence of no. Silence, ambivalence, or reluctant agreement is not consent. Check in with your partners. Ask. Communicate.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">S</div><div class="rb-title">Specific</div></div><div class="rb-body"><p>Consent to one activity is not consent to all activities. Consent to play with one person is not consent to play with others. Consent given previously does not carry over to new activities or participants without explicit agreement.</p></div></div>
+  <h3>Negotiation Before Play</h3>
+  <div class="hl green"><h4>Discuss Before You Begin</h4><p>All guests are strongly encouraged to negotiate the terms of any play before entering the play space &mdash; limits, safewords, experience levels, and activities desired or off-limits. The upper level social lounge exists in part to provide a comfortable, low-pressure environment for these conversations.</p></div>
+  <h3>Intoxication &amp; Consent</h3>
+  <div class="hl red"><h4>Intoxicated Persons Cannot Consent</h4><p>A person who is significantly intoxicated cannot give meaningful consent. Initiating sexual or BDSM activity with a person who is visibly impaired is a serious violation and may constitute a criminal offence under Canadian law. If you are unsure whether someone is too intoxicated to consent &mdash; they are. Do not proceed.</p></div>
+  <h3>Approaching Other Guests</h3>
+  <ul class="s">
+    <li>Ask before touching &mdash; always, without exception</li>
+    <li>Accept rejection graciously &mdash; a &ldquo;no&rdquo; is complete, do not negotiate or persist</li>
+    <li>Do not interrupt an active scene without explicit invitation from all parties</li>
+    <li>Observing an active scene is not an invitation to join</li>
+    <li>If you are unsure whether an approach is welcome, it is not</li>
+  </ul>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-safewords">
+  <div class="sh"><div class="sh-num">Section 04</div><div class="sh-rule"></div><div class="sh-title">Safewords &amp; Signals</div><div class="sh-intro">The Ember House uses the universal traffic light system as its default safeword protocol. These words are posted throughout the play space.</div></div>
+  <div class="sw-grid">
+    <div class="sw-box r"><div class="sw-word">RED</div><div class="sw-meaning">Full Stop</div><div class="sw-desc">Everything stops immediately. No questions, no negotiation. All activity ceases and all restraints are removed as quickly as safely possible.</div></div>
+    <div class="sw-box a"><div class="sw-word">YELLOW</div><div class="sw-meaning">Slow Down / Check In</div><div class="sw-desc">Something needs attention. Slow or pause the activity. Check in with your partner. The scene may continue once both parties confirm readiness.</div></div>
+    <div class="sw-box g"><div class="sw-word">GREEN</div><div class="sw-meaning">All Good / Continue</div><div class="sw-desc">Explicit signal that everything is good and the scene may continue or escalate. Use this when your partner checks in with you.</div></div>
+  </div>
+  <h3>Non-Verbal Signals</h3>
+  <div class="hl neutral"><h4>When Verbal Safewords Are Not Possible</h4><p>In scenes involving gags, hoods, or other verbal restrictions, guests must negotiate a non-verbal alternative before beginning.</p><ul class="s" style="margin-top:12px"><li><strong>Hand signal:</strong> Three rapid finger taps on the partner&rsquo;s body</li><li><strong>Object drop:</strong> Holding a small object that when dropped signals stop</li><li><strong>Vocal pattern:</strong> Three distinct grunts or vocalizations agreed upon in advance</li></ul></div>
+  <h3>Honouring a Safeword</h3>
+  <div class="hl red"><h4>Zero Tolerance</h4><p>Ignoring or dismissing a safeword is a zero-tolerance violation. If engaged in consensual non-consent (CNC) or edge play with scripted objections, an unambiguous out-of-role safeword must be established before beginning. Any guest observed dismissing a safeword will be removed immediately, permanently, and without refund.</p></div>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-conduct">
+  <div class="sh"><div class="sh-num">Section 05</div><div class="sh-rule"></div><div class="sh-title">Guest Conduct</div><div class="sh-intro">Expectations for behaviour throughout the property &mdash; in the social lounge, the play space, private rooms, and everywhere in between.</div></div>
+  <h3>What Is Welcome Here</h3>
+  <ul class="ck">
+    <li>Enthusiastic, negotiated, consensual play between adults aged 21+</li>
+    <li>BDSM, kink, and power exchange activities that all involved parties have agreed to</li>
+    <li>Group play in the designated play space during retreat events &mdash; with consent of all participants</li>
+    <li>Observation of open scenes with implicit or explicit permission from participants</li>
+    <li>Socialising and building community in the upper level lounge</li>
+    <li>Responsible alcohol consumption &mdash; drinking is welcome, incapacitation is not</li>
+    <li>Open, honest conversations about desires, limits, and boundaries</li>
+  </ul>
+  <h3>What Is Not Permitted</h3>
+  <ul class="cx">
+    <li><strong>Photography or video recording of any kind</strong> &mdash; anywhere on the property, at any time, without exception</li>
+    <li>Non-consensual touching of any kind</li>
+    <li>Solicitation or exchange of money for sexual services on the premises</li>
+    <li>Bringing any guest who has not been verified, booked, and agreed to these Standards of Practice</li>
+    <li>Sharing the address or any identifying information about this property with anyone not already a confirmed guest</li>
+    <li>Harassment, repeated unwanted approach, or failure to accept a &ldquo;no&rdquo;</li>
+    <li>Use of illegal substances on the premises</li>
+    <li>Any activity involving minors &mdash; zero tolerance, immediate removal and law enforcement notification</li>
+  </ul>
+  <div class="hl red"><h4>Zero Tolerance for Recording</h4><p>Phones must be stored face-down or in pockets/bags in all play areas and the upper-level designated private rooms during retreat events. Any guest observed photographing or recording others without explicit permission will be removed immediately and permanently.</p></div>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-hygiene">
+  <div class="sh"><div class="sh-num">Section 06</div><div class="sh-rule"></div><div class="sh-title">Hygiene &amp; Sanitization</div><div class="sh-intro">A clean, safe physical environment is as important as a safe social one. These standards protect every guest equally.</div></div>
+  <h3>Personal Hygiene</h3>
+  <p>Guests are expected to arrive freshly showered and in good personal hygiene. Guests who are noticeably unhygienic may be asked to use the shower facilities before accessing the play space.</p>
+  <h3>Barrier Methods</h3>
+  <div class="hl green"><h4>Safer Sex Supplies Available Throughout the Property</h4><p>Condoms, gloves, and dental dams are provided in all play areas and private rooms. Guests are strongly encouraged to use barrier methods consistent with their own risk assessment and prior agreements with their partners.</p></div>
+  <h3>Equipment Use &amp; Care</h3>
+  <ul class="s">
+    <li>All shared play space equipment must be wiped down with the provided surface sanitizer <strong>before and after each use</strong></li>
+    <li>Leather restraint equipment must be wiped with the provided leather-safe cleaner after each use</li>
+    <li>Report any equipment damage to the operator immediately</li>
+    <li>All upholstered surfaces are treated by the operator with <strong>Micrylium BioText</strong> as part of post-event cleaning protocols</li>
+  </ul>
+  <h3>Private Room Protocol</h3>
+  <ul class="s">
+    <li>Fresh linens provided for every booking &mdash; do not reuse linens from a previous session</li>
+    <li>The waterproof mattress liner must remain on the mattress at all times</li>
+    <li>Strip used linens and leave them in the provided laundry bag at end of session</li>
+    <li>Leave the room in reasonable condition &mdash; the operator will complete full sanitization between bookings</li>
+  </ul>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-incidents">
+  <div class="sh"><div class="sh-num">Section 07</div><div class="sh-rule"></div><div class="sh-title">Incidents &amp; Response</div><div class="sh-intro">How The Ember House handles consent violations, medical situations, and guest removal.</div></div>
+  <h3>Reporting a Concern</h3>
+  <p>Any guest who witnesses or experiences a consent violation or any situation that makes them feel unsafe is encouraged to bring it to the operator immediately. You will be taken seriously, treated with discretion, and no retaliation will be tolerated. During retreat events, a designated <strong>Consent Monitor</strong> is present on-site throughout.</p>
+  <h3>Consent Violations &mdash; Response Protocol</h3>
+  <div class="rb"><div class="rb-header"><div class="rb-num">1</div><div class="rb-title">Immediate Separation</div></div><div class="rb-body"><p>The operator or consent monitor will immediately separate the involved parties. The reporting guest will not be asked to confront the accused party or remain in their presence.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">2</div><div class="rb-title">Private Conversation</div></div><div class="rb-body"><p>The operator will speak privately with the reporting guest. Notes will be taken. The reporting guest&rsquo;s account is the primary record.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">3</div><div class="rb-title">Determination &amp; Action</div></div><div class="rb-body"><p>In cases of clear or serious violation, the offending guest will be removed immediately &mdash; without refund and without debate. The safety and comfort of the reporting guest is the priority.</p></div></div>
+  <div class="rb"><div class="rb-header"><div class="rb-num">4</div><div class="rb-title">Permanent Ban</div></div><div class="rb-body"><p>Any guest removed for a consent violation is permanently banned from The Ember House. This decision is final and non-negotiable.</p></div></div>
+  <h3>Medical Emergencies</h3>
+  <div class="hl red"><h4>In Any Medical Emergency &mdash; Call 911 First</h4><p>The safety of guests always supersedes the privacy of the venue. Call 911 immediately in any medical emergency. Do not delay emergency services out of concern for discretion. Nearest hospital: <strong>Headwaters Health Care Centre, Orangeville</strong> &mdash; 100 Rolling Hills Drive, approximately 10&ndash;25 minutes from the property.</p></div>
+  <h3>Scene Distress &mdash; Drop &amp; Subdrop</h3>
+  <p>Guests experiencing emotional or psychological distress following intense play are encouraged to reach out to the operator, their partner, or the consent monitor. A quiet recovery space is available. Aftercare is expected between all play partners.</p>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+<div class="section" id="section-acknowledgement">
+  <div class="sh"><div class="sh-num">Section 08</div><div class="sh-rule"></div><div class="sh-title">Guest Acknowledgement</div><div class="sh-intro">This signed acknowledgement is required from every guest before accessing the property.</div></div>
+  <div class="hl"><h4>Please Read Carefully Before Signing</h4>
+    <p>By signing below, I confirm that I have read and understood The Ember House Standards of Practice in full. I agree to abide by all principles and rules contained within this document for the duration of my time on the property. I understand that failure to comply may result in immediate removal without refund and a permanent ban.</p>
+    <p style="margin-top:10px">I confirm that I am 21 years of age or older and will provide valid government-issued photo ID upon request. I understand that The Ember House is a private, members-only space and will not share the address or any identifying information about this property or its guests.</p>
+    <p style="margin-top:10px">I understand that the activities available at this venue carry inherent physical and emotional risks and that I participate entirely of my own free will, with full knowledge and acceptance of those risks. I agree to communicate my limits clearly, to honour the limits of others, and to use safewords appropriately.</p>
+  </div>
+  <div class="so" style="margin-top:24px">
+    <div class="so-line"><div style="flex:1"><div class="so-label">Full Legal Name (Print)</div><div class="so-field"></div></div><div style="width:180px"><div class="so-label">Date of Birth</div><div class="so-short"></div></div></div>
+    <div class="so-line"><div style="flex:1"><div class="so-label">Signature</div><div class="so-field" style="height:44px"></div></div><div style="width:180px"><div class="so-label">Date</div><div class="so-short"></div></div></div>
+    <div class="so-line"><div style="flex:1"><div class="so-label">Scene Name / Preferred Name (Optional)</div><div class="so-field"></div></div><div style="width:180px"><div class="so-label">ID Type Verified</div><div class="so-short"></div></div></div>
+    <div class="so-line"><div style="flex:1"><div class="so-label">Operator Signature (Confirming ID Verified)</div><div class="so-field" style="height:44px"></div></div><div style="width:180px"><div class="so-label">Visit Date</div><div class="so-short"></div></div></div>
+  </div>
+  <h3>Emergency Contact (Optional but Encouraged)</h3>
+  <div class="so" style="margin-top:16px">
+    <div class="so-line"><div style="flex:1"><div class="so-label">Emergency Contact Name</div><div class="so-field"></div></div><div style="width:220px"><div class="so-label">Relationship</div><div class="so-short"></div></div></div>
+    <div class="so-line"><div style="flex:1"><div class="so-label">Emergency Contact Phone Number</div><div class="so-field"></div></div></div>
+  </div>
+  <p style="margin-top:24px;font-size:11px;color:var(--slate);text-align:center;font-weight:300">The Ember House &mdash; Standards of Practice v1.0 &mdash; This document is reviewed and updated periodically.</p>
+  <div class="df"><span>Internal Document &mdash; Not for Public Distribution</span><span>The Ember House Standards of Practice &mdash; v1.0</span></div>
+</div>
+
+</main>
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  document.getElementById('btn-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

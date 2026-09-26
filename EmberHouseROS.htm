@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Event Run Sheet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;
+  --ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;
+  --ember:#7c3028;--copper:#c4956a;--char:#3d2820;
+  --green:#2a5c3a;--red:#7a1a1a;--amber:#8a5a10;
+}
+body{background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:13px;line-height:1.65}
+@media print{
+  nav{display:none!important}
+  main{margin-top:0!important;padding:24px 36px!important}
+  .no-print{display:none!important}
+  body{background:white;font-size:11px}
+  .phase{page-break-inside:avoid}
+}
+nav{position:fixed;top:0;left:0;right:0;background:var(--char);z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav-brand{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.45);font-size:10px;margin-left:8px;letter-spacing:0.1em}
+.nav-right{display:flex;align-items:center;gap:12px}
+.print-btn{background:var(--ember);border:none;color:var(--sand);font-size:9px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;padding:6px 14px;text-transform:uppercase;letter-spacing:0.15em;transition:all 0.18s}
+.print-btn:hover{background:var(--copper)}
+main{margin-top:50px;max-width:920px;margin-left:auto;margin-right:auto;padding:48px 52px 100px}
+.run-header{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--linen)}
+.run-eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.run-title{font-size:48px;font-weight:900;line-height:0.9;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px}
+.run-title span{color:var(--ember)}
+.run-subtitle{font-size:12px;font-weight:300;color:var(--ash);margin-bottom:20px}
+.run-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:20px}
+.event-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-bottom:28px}
+.event-cell{background:var(--offwhite);padding:14px 16px}
+.event-cell-label{font-size:8px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.event-cell-input{border:none;border-bottom:1px solid var(--ash);background:transparent;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:var(--ink);width:100%;outline:none;padding:2px 0}
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-bottom:20px}
+.stat-cell{background:var(--offwhite);padding:12px 14px;text-align:center}
+.stat-cell-label{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.stat-input{border:none;border-bottom:1px solid var(--ash);background:transparent;font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--ember);width:100%;outline:none;text-align:center}
+.phase{margin-bottom:28px}
+.phase-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--linen)}
+.phase-badge{background:var(--ember);color:var(--sand);font-size:8px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:4px 10px;white-space:nowrap}
+.phase-badge.green{background:var(--green)}
+.phase-badge.amber{background:var(--amber)}
+.phase-badge.red{background:var(--red)}
+.phase-badge.slate{background:var(--ash)}
+.phase-title{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-0.01em}
+.phase-time{font-size:10px;font-weight:500;color:var(--slate);letter-spacing:0.1em;text-transform:uppercase;margin-left:auto}
+.checklist{border:1px solid var(--linen)}
+.check-row{display:grid;grid-template-columns:28px 1fr 120px 48px;align-items:start;border-bottom:1px solid var(--linen);background:var(--offwhite)}
+.check-row:last-child{border-bottom:none}
+.check-row:nth-child(even){background:var(--sand)}
+.check-row.header-row{background:var(--stone);border-bottom:2px solid var(--ember)}
+.check-row.section-break{background:var(--stone)}
+.check-cell{padding:9px 12px;font-size:12px;font-weight:300;color:var(--walnut);line-height:1.5}
+.check-cell.center{text-align:center;display:flex;align-items:center;justify-content:center}
+.check-cell.label{font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember)}
+.check-cell.section-label{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--slate);grid-column:1/-1;padding:7px 12px;background:var(--stone)}
+.check-cell strong{font-weight:600;color:var(--ink)}
+.check-cell .note{font-size:10px;color:var(--slate);margin-top:2px;display:block}
+.check-input{width:14px;height:14px;border:1px solid var(--ash);appearance:none;background:transparent;cursor:pointer;position:relative;flex-shrink:0}
+.check-input:checked{background:var(--ember);border-color:var(--ember)}
+.check-input:checked::after{content:'✓';position:absolute;top:-2px;left:1px;font-size:11px;color:white;font-weight:700}
+.notes-cell{border:none;border-bottom:1px solid var(--linen);background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none;padding:9px 12px;resize:none;height:36px}
+.cm-grid{display:grid;grid-template-columns:80px 1fr 80px 1fr;gap:1px;background:var(--linen);border:1px solid var(--linen);margin-top:14px}
+.cm-cell{background:var(--offwhite);padding:10px 12px}
+.cm-cell.header{background:var(--stone);font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember)}
+.cm-input{border:none;border-bottom:1px solid var(--ash);background:transparent;font-family:'Outfit',sans-serif;font-size:12px;font-weight:300;color:var(--ink);width:100%;outline:none;padding:2px 0}
+.incident-box{border:1px solid var(--linen);background:var(--offwhite);margin-top:14px}
+.incident-header{background:var(--stone);padding:8px 14px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember);border-bottom:1px solid var(--linen)}
+.incident-row{display:grid;grid-template-columns:100px 60px 1fr 100px;border-bottom:1px solid var(--linen)}
+.incident-row:last-child{border-bottom:none}
+.incident-row.ih{background:var(--stone)}
+.incident-cell{padding:8px 12px;font-size:11px;font-weight:300;color:var(--walnut)}
+.incident-cell.label{font-size:8px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+.incident-input{border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none;padding:0}
+.signoff-grid{display:grid;grid-template-columns:1fr 1fr 160px;gap:1px;background:var(--linen);border:1px solid var(--linen);margin-top:14px}
+.so-cell{background:var(--offwhite);padding:14px 16px}
+.so-label{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.so-line{border-bottom:1px solid var(--ash);height:32px;width:100%}
+.notes-area{border:1px solid var(--linen);background:var(--offwhite);margin-top:14px}
+.notes-header{background:var(--stone);padding:8px 14px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember);border-bottom:1px solid var(--linen)}
+.notes-body{padding:14px;min-height:80px}
+textarea.notes-ta{width:100%;border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:12px;font-weight:300;color:var(--ink);resize:none;outline:none;min-height:80px;line-height:1.6}
+.divider{height:1px;background:var(--linen);margin:24px 0}
+.run-footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.run-footer span{font-size:8px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">The Ember House<span>Event Run Sheet</span></div>
+  <div class="nav-right">
+    <button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+<main>
+
+<div class="run-header">
+  <div class="run-eyebrow">Internal Operational Document &mdash; One Per Event &mdash; Not for Guest Distribution</div>
+  <div class="run-title">Event<br><span>Run Sheet</span></div>
+  <div class="run-subtitle">The Ember House &mdash; Weekend Retreat Checklist &mdash; v1.0 &mdash; 2026</div>
+  <div class="run-rule"></div>
+</div>
+
+<div class="event-grid">
+  <div class="event-cell"><div class="event-cell-label">Event Date (Fri)</div><input class="event-cell-input" type="text" placeholder="DD / MM / YYYY"></div>
+  <div class="event-cell"><div class="event-cell-label">Event Number (Year)</div><input class="event-cell-input" type="text" placeholder="e.g. Event #12"></div>
+  <div class="event-cell"><div class="event-cell-label">Confirmed Guest Count</div><input class="event-cell-input" type="text" placeholder="e.g. 14"></div>
+  <div class="event-cell"><div class="event-cell-label">Consent Monitor Name</div><input class="event-cell-input" type="text" placeholder="Name"></div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-cell"><div class="stat-cell-label">Guests Checked In</div><input class="stat-input" type="text" placeholder="0"></div>
+  <div class="stat-cell"><div class="stat-cell-label">Waivers Confirmed</div><input class="stat-input" type="text" placeholder="0"></div>
+  <div class="stat-cell"><div class="stat-cell-label">IDs Verified</div><input class="stat-input" type="text" placeholder="0"></div>
+  <div class="stat-cell"><div class="stat-cell-label">Incidents Logged</div><input class="stat-input" type="text" placeholder="0"></div>
+  <div class="stat-cell"><div class="stat-cell-label">Rooms in Use (Peak)</div><input class="stat-input" type="text" placeholder="0"></div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge">Phase 1</div>
+    <div class="phase-title">Pre-Event Setup</div>
+    <div class="phase-time">Thursday Evening / Friday Afternoon &mdash; Before Guest Arrival</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell section-label">Play Space &mdash; Lower Level</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Inspect all equipment</strong> for damage, wear, or malfunction<span class="note">Crosses, benches, swing frames, platforms, restraint sets</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Sanitize all upholstered surfaces</strong> with Micrylium BioText<span class="note">Sofas, wedges, cushions, lounge chairs</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean all hard equipment surfaces</strong><span class="note">Steel crosses, benches, swing frames</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean and inspect all leather restraint sets</strong><span class="note">7 sets — check stitching, buckles, and padding</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Restock towel stations</strong><span class="note">Fresh bath and face towels at all stations</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Restock surface sanitizer spray</strong> at all play space stations</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Set mood lighting</strong> &mdash; test all dimmer scenes</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Test audio system</strong> &mdash; queue ambient playlist</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Post safeword signs</strong> in visible locations throughout play space<span class="note">RED / YELLOW / GREEN traffic light cards</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm first aid kit</strong> is stocked and accessible in play space</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Upper Level &mdash; Social Lounge</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Set up lounge seating</strong> and arrange common areas</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Test projector and screen</strong> &mdash; queue welcome content or film</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Test karaoke system</strong> &mdash; confirm microphones and library</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Set mood lighting</strong> &mdash; upper level lounge scenes</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Test upper level audio system</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Stock kitchen</strong> with water, beverages, and guest supplies</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Private Rooms (All 5)</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Fresh linens on all beds</strong> &mdash; satin sheet sets, duvet, pillows<span class="note">Waterproof liner must remain on mattress at all times</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Fresh towels</strong> in each room</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Inspect bed frames</strong> for structural integrity<span class="note">Check all D-ring attachment points and fasteners</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Restock room sanitizer and safer sex supplies</strong><span class="note">Condoms, gloves, dental dams, surface spray</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Washrooms</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean and restock all washrooms</strong><span class="note">Soap, paper products, hand towels, bidet check</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Restock first aid supplies</strong> in washrooms<span class="note">Bandages, antiseptic, OTC meds</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm main floor first aid kit</strong> is stocked and accessible</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Admin &amp; Access</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm guest list and waiver status</strong> in SmartWaiver<span class="note">All confirmed guests must have signed waiver on file</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Print or prepare check-in list</strong> with guest names</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Brief consent monitor</strong> on guest list, custom safewords (if any), and any flagged health notes</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm emergency numbers</strong> are posted in kitchen and play space<span class="note">911 / Headwaters Health Care Centre: 100 Rolling Hills Drive, Orangeville</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge green">Phase 2</div>
+    <div class="phase-title">Guest Check-In</div>
+    <div class="phase-time">Friday Evening &mdash; Arrival Window</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Greet each guest</strong> at the door &mdash; confirm name against guest list</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Verify government-issued ID</strong> &mdash; confirm age 21+<span class="note">Record confirmation against SmartWaiver guest record</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm waiver is on file</strong> in SmartWaiver<span class="note">Do not admit any guest without a signed waiver on record</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Review any flagged health disclosures</strong> privately with guest if relevant</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Direct guest to lounge</strong> &mdash; property tour for first-time guests</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>All guests arrived &mdash; confirm final headcount</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge amber">Phase 3</div>
+    <div class="phase-title">Opening Orientation</div>
+    <div class="phase-time">Friday Evening &mdash; After All Guests Arrive &mdash; Before Play Space Opens</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Gather all guests in the lounge</strong> for orientation<span class="note">Informal but required &mdash; keep it warm, not clinical</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Welcome and introduce the space</strong> &mdash; upper and lower level walk-through</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Introduce the Consent Monitor</strong> by name and role</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Review safeword system</strong> &mdash; RED / YELLOW / GREEN<span class="note">Confirm anyone using custom safewords has communicated them</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Review consent and conduct expectations</strong> &mdash; keep it brief and positive</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm no-photography policy</strong> &mdash; phones away in play areas and private rooms</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Point out first aid kits</strong> and confirm nearest hospital<span class="note">Headwaters Health Care Centre, Orangeville &mdash; 10&ndash;25 min</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Open the floor for questions</strong> before declaring the event open</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Declare the event open</strong> &mdash; play space accessible</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge">Phase 4</div>
+    <div class="phase-title">During Event &mdash; Ongoing Monitoring</div>
+    <div class="phase-time">Friday Night Through Sunday &mdash; While Guests Are On Premises</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell section-label">Consent Monitor Check-Ins (Every 90 Minutes During Active Play)</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Visual sweep of play space</strong> &mdash; note any scenes requiring check-in<span class="note">Particularly any active bondage or restraint scenes</span></div><div class="check-cell"><input class="notes-cell" placeholder="CM"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Check in with any guest who appears distressed</strong> or isolated</div><div class="check-cell"><input class="notes-cell" placeholder="CM"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm play space equipment is being used safely</strong></div><div class="check-cell"><input class="notes-cell" placeholder="CM"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Report any concerns to operator immediately</strong></div><div class="check-cell"><input class="notes-cell" placeholder="CM"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Operator Ongoing Tasks</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Mid-event towel restock</strong> &mdash; play space stations</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Mid-event sanitizer restock</strong> &mdash; play space and washrooms</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Private room linen turnovers</strong> as rooms are vacated<span class="note">Strip, laundry bag, fresh set &mdash; BioText mattress treatment between uses</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Monitor noise levels</strong> &mdash; particularly outdoors after midnight</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Monitor guest intoxication levels</strong> &mdash; intervene if needed</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+  <div style="margin-top:16px">
+    <div style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember);margin-bottom:8px">Consent Monitor Check-In Log</div>
+    <div class="cm-grid">
+      <div class="cm-cell header">Time</div><div class="cm-cell header">Notes / Observations</div><div class="cm-cell header">Time</div><div class="cm-cell header">Notes / Observations</div>
+      <div class="cm-cell"><input class="cm-input" type="text" placeholder="e.g. 10:30pm"></div><div class="cm-cell"><input class="cm-input" type="text" placeholder=" "></div><div class="cm-cell"><input class="cm-input" type="text" placeholder="e.g. 12:00am"></div><div class="cm-cell"><input class="cm-input" type="text" placeholder=" "></div>
+      <div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div>
+      <div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div>
+      <div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div><div class="cm-cell"><input class="cm-input" type="text"></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge slate">Phase 5</div>
+    <div class="phase-title">Guest Checkout</div>
+    <div class="phase-time">Sunday &mdash; Checkout</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Confirm all guests have departed</strong> &mdash; final headcount</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Walk all rooms and common areas</strong> &mdash; confirm no guests or belongings remain</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Collect any lost property</strong> &mdash; log and store securely</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Note any property damage</strong> for follow-up</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PHASE 6 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge red">Phase 6</div>
+    <div class="phase-title">Post-Event Cleanup &amp; Sanitization</div>
+    <div class="phase-time">Sunday &mdash; After Guest Departure &mdash; Before Weekday Bookings Resume</div>
+  </div>
+  <div class="checklist">
+    <div class="check-row header-row">
+      <div class="check-cell center label">&nbsp;</div>
+      <div class="check-cell label">Task</div>
+      <div class="check-cell label">By</div>
+      <div class="check-cell label center">Done</div>
+    </div>
+    <div class="check-row"><div class="check-cell section-label">Play Space &mdash; Full Sanitization</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Apply Micrylium BioText to all upholstered surfaces</strong><span class="note">Sofas, wedges, floor cushions, lounge chairs &mdash; full treatment</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean all hard equipment surfaces</strong><span class="note">Steel crosses, benches, swing frames &mdash; disinfectant wipe-down</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean and condition all leather restraint sets</strong><span class="note">Leather cleaner + conditioner &mdash; inspect for wear</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Collect and launder all used towels</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Mop and clean play space floors</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Empty and reline all bins</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Private Rooms (All 5)</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Strip and launder all used linens</strong><span class="note">All 5 rooms regardless of apparent use</span></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Apply BioText to mattress surface</strong> on all 5 beds</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Wipe all room surfaces</strong> &mdash; bed frames, tables, mirrors, chairs</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Restock all rooms</strong> &mdash; fresh linens, towels, safer sex supplies</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell section-label">Upper Level &amp; Washrooms</div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean and reset lounge furniture</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Clean kitchen and dining area</strong> &mdash; dishes, surfaces, appliances</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Deep clean all washrooms</strong> &mdash; full disinfection, restock all supplies</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Empty all bins throughout property</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Mop all hard floors throughout property</strong></div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+    <div class="check-row"><div class="check-cell center"></div><div class="check-cell"><strong>Final walk-through</strong> &mdash; property ready for weekday bookings</div><div class="check-cell"><input class="notes-cell" placeholder="Operator"></div><div class="check-cell center"><input type="checkbox" class="check-input"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- INCIDENT LOG -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge red">Incident Log</div>
+    <div class="phase-title">Any Consent Concerns, Safety Issues, or Notable Events</div>
+    <div class="phase-time">Record All Incidents &mdash; No Matter How Minor</div>
+  </div>
+  <div class="incident-box">
+    <div class="incident-header">Incident Record &mdash; Complete one row per incident</div>
+    <div class="incident-row ih"><div class="incident-cell label">Time</div><div class="incident-cell label">Type</div><div class="incident-cell label">Description</div><div class="incident-cell label">Resolution</div></div>
+    <div class="incident-row"><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><select style="border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none"><option value="">Type...</option><option>Consent concern</option><option>Medical</option><option>Guest removal</option><option>Equipment issue</option><option>Noise</option><option>Other</option></select></div><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><input class="incident-input" type="text"></div></div>
+    <div class="incident-row"><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><select style="border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none"><option value="">Type...</option><option>Consent concern</option><option>Medical</option><option>Guest removal</option><option>Equipment issue</option><option>Noise</option><option>Other</option></select></div><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><input class="incident-input" type="text"></div></div>
+    <div class="incident-row"><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><select style="border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none"><option value="">Type...</option><option>Consent concern</option><option>Medical</option><option>Guest removal</option><option>Equipment issue</option><option>Noise</option><option>Other</option></select></div><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><input class="incident-input" type="text"></div></div>
+    <div class="incident-row"><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><select style="border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;color:var(--ink);width:100%;outline:none"><option value="">Type...</option><option>Consent concern</option><option>Medical</option><option>Guest removal</option><option>Equipment issue</option><option>Noise</option><option>Other</option></select></div><div class="incident-cell"><input class="incident-input" type="text"></div><div class="incident-cell"><input class="incident-input" type="text"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SIGN-OFF -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-badge green">Sign-Off</div>
+    <div class="phase-title">Post-Event Operator Sign-Off</div>
+    <div class="phase-time">Complete After Full Cleanup &mdash; File With Event Record</div>
+  </div>
+  <div class="notes-area" style="margin-bottom:16px">
+    <div class="notes-header">Post-Event Notes &mdash; General Observations, Guest Feedback, Improvements</div>
+    <div class="notes-body"><textarea class="notes-ta" placeholder="Record any general observations, positive feedback, areas for improvement, supply levels to reorder, maintenance issues noted, or anything else relevant for future events..."></textarea></div>
+  </div>
+  <div class="signoff-grid">
+    <div class="so-cell"><div class="so-label">Operator Name</div><div class="so-line"></div></div>
+    <div class="so-cell"><div class="so-label">Operator Signature</div><div class="so-line"></div></div>
+    <div class="so-cell"><div class="so-label">Date Completed</div><div class="so-line"></div></div>
+  </div>
+</div>
+
+<div class="run-footer">
+  <span>Internal Document &mdash; The Ember House &mdash; One Per Event &mdash; File Securely</span>
+  <span>Event Run Sheet &mdash; v1.0 &mdash; 2026</span>
+</div>
+
+</main>
+</body>
+</html>
