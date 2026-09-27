@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Code of Conduct</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;
+  --ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;
+  --ember:#7c3028;--copper:#c4956a;--char:#3d2820;
+  --green:#2a5c3a;--red:#7a1a1a;
+}
+body{background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;line-height:1.75}
+@media print{nav{display:none!important}main{margin-top:0!important;padding:32px 48px!important}.no-print{display:none!important}body{background:white}}
+nav{position:fixed;top:0;left:0;right:0;background:var(--char);z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:50px}
+.nav-brand{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.45);font-size:10px;margin-left:8px;letter-spacing:0.1em}
+.print-btn{background:var(--ember);border:none;color:var(--sand);font-size:9px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;padding:6px 14px;text-transform:uppercase;letter-spacing:0.15em}
+.print-btn:hover{background:var(--copper)}
+main{margin-top:50px;max-width:880px;margin-left:auto;margin-right:auto;padding:64px 52px 120px}
+.header{margin-bottom:52px}
+.eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:20px}
+.title{font-size:72px;font-weight:900;line-height:0.88;color:var(--ink);letter-spacing:-0.03em;margin-bottom:8px}
+.title span{color:var(--ember)}
+.subtitle{font-size:14px;font-weight:300;color:var(--ash);margin-bottom:8px}
+.version{font-size:10px;font-weight:400;color:var(--slate);letter-spacing:0.1em;margin-bottom:32px}
+.rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:36px}
+.opening{border-left:2px solid var(--ember);padding:24px 28px;background:var(--stone);font-size:15px;font-weight:300;line-height:1.85;color:var(--walnut);margin-bottom:52px}
+.opening p+p{margin-top:14px}
+.opening strong{font-weight:700;color:var(--ink)}
+.opening em{font-style:italic;color:var(--ash)}
+.section{margin-bottom:52px}
+.section-label{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
+.section-rule{width:100%;height:1px;background:var(--linen);margin-bottom:20px}
+.section-title{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;margin-bottom:16px;line-height:1.05}
+.principle{display:grid;grid-template-columns:48px 1fr;gap:0;margin-bottom:2px;background:var(--offwhite);border:1px solid var(--linen);border-left:none}
+.principle-num{background:var(--ember);color:var(--sand);font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;letter-spacing:-0.02em;min-height:100%}
+.principle-body{padding:18px 22px}
+.principle-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-0.01em}
+.principle-text{font-size:13px;font-weight:300;color:var(--walnut);line-height:1.7}
+.principle-text strong{font-weight:600;color:var(--ink)}
+.tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px}
+.tone-card{background:var(--offwhite);border:1px solid var(--linen);border-top:2px solid var(--ember);padding:20px 22px}
+.tone-card-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tone-card-body{font-size:12px;font-weight:300;color:var(--walnut);line-height:1.7}
+.shared-block{background:var(--stone);border:1px solid var(--linen);border-left:2px solid var(--ember);padding:20px 24px;margin-bottom:14px}
+.shared-block-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.shared-block-body{font-size:13px;font-weight:300;color:var(--walnut);line-height:1.7}
+.shared-block-body p+p{margin-top:10px}
+ul.s{list-style:none;padding:0;margin:10px 0 0}
+ul.s li{padding:8px 0 8px 16px;position:relative;border-bottom:1px solid var(--linen);color:var(--walnut);font-size:13px;font-weight:300;line-height:1.6}
+ul.s li:last-child{border-bottom:none}
+ul.s li::before{content:'—';position:absolute;left:0;color:var(--ember);font-size:11px;top:10px}
+ul.s li strong{font-weight:600;color:var(--ink)}
+.pull-quote{margin:36px 0;padding:28px 36px;border-left:3px solid var(--ember);background:var(--offwhite)}
+.pull-quote-text{font-size:20px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.01em;margin-bottom:10px}
+.pull-quote-sub{font-size:12px;font-weight:300;color:var(--slate);font-style:italic}
+.hl{border-left:2px solid var(--ember);padding:18px 22px;background:var(--stone);margin:18px 0;font-size:13px;font-weight:300;color:var(--walnut);line-height:1.75}
+.hl h4{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--ember);margin-bottom:10px}
+.hl p+p{margin-top:10px}
+.hl.green{border-left-color:var(--green);background:var(--offwhite)}
+.hl.green h4{color:var(--green)}
+.hl.red{border-left-color:var(--red);background:var(--offwhite)}
+.hl.red h4{color:var(--red)}
+.privacy-impact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 24px}
+.pi-card{border:1px solid var(--linen);padding:20px 20px;background:var(--offwhite)}
+.pi-card.ember{border-top:2px solid var(--ember)}
+.pi-card.red{border-top:2px solid var(--red)}
+.pi-card-icon{font-size:22px;margin-bottom:10px}
+.pi-card-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.pi-card-body{font-size:12px;font-weight:300;color:var(--walnut);line-height:1.7}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px}
+.do-block{background:var(--offwhite);border:1px solid var(--linen);border-top:2px solid var(--green)}
+.dont-block{background:var(--offwhite);border:1px solid var(--linen);border-top:2px solid var(--red)}
+.do-header{background:rgba(42,92,58,0.06);padding:10px 16px;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--linen)}
+.dont-header{background:rgba(122,26,26,0.05);padding:10px 16px;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);border-bottom:1px solid var(--linen)}
+.do-item{display:flex;align-items:flex-start;gap:10px;padding:9px 16px;border-bottom:1px solid var(--linen);font-size:12px;font-weight:300;color:var(--walnut);line-height:1.5}
+.do-item:last-child{border-bottom:none}
+.do-item::before{content:'✓';color:var(--green);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
+.dont-item{display:flex;align-items:flex-start;gap:10px;padding:9px 16px;border-bottom:1px solid var(--linen);font-size:12px;font-weight:300;color:var(--walnut);line-height:1.5}
+.dont-item:last-child{border-bottom:none}
+.dont-item::before{content:'✕';color:var(--red);font-weight:700;font-size:11px;flex-shrink:0;margin-top:2px}
+.doc-footer{margin-top:80px;padding-top:14px;border-top:1px solid var(--linen);display:flex;justify-content:space-between}
+.doc-footer span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">The Ember House<span>Code of Conduct</span></div>
+  <button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
+</nav>
+<main>
+
+<div class="header">
+  <div class="eyebrow">Guest-Facing Document &mdash; Distributed at Booking</div>
+  <div class="title">Code of<br><span>Conduct</span></div>
+  <div class="subtitle">How We Treat Each Other &mdash; The Ember House Community Standard</div>
+  <div class="version">The Ember House &mdash; Version 1.0 &mdash; 2026 &mdash; Orangeville&ndash;Caledon&ndash;Amaranth, Ontario</div>
+  <div class="rule"></div>
+  <div class="opening">
+    <p>The Ember House is not just a venue. It is a community &mdash; one built by and for people who have chosen to live and love in ways that require courage, honesty, and mutual care. Every person who walks through this door brings that with them.</p>
+    <p>Our <strong>Standards of Practice</strong> cover the rules. Our <strong>Guest Waiver</strong> covers the legal framework. This document is something different. This is about <em>how we show up for each other</em> &mdash; the tone we set, the warmth we extend, and the kind of space we build together every time we gather here.</p>
+    <p>The Ember House works because everyone in it takes responsibility not just for their own experience, but for the experience of everyone around them. <strong>That is the standard we hold ourselves to. We ask you to hold it too.</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 01</div>
+  <div class="section-rule"></div>
+  <div class="section-title">The Tone We Strive For</div>
+  <p style="font-size:14px;font-weight:300;color:var(--ash);margin-bottom:24px;line-height:1.75">The Ember House is a warm, welcoming, and intentional space. It is not a nightclub, a dungeon club, or a party venue. It is a private home that has been opened to a community. We ask that you feel that and honour it.</p>
+  <div class="tone-grid">
+    <div class="tone-card"><div class="tone-card-title">Warm, Not Performative</div><div class="tone-card-body">We are here to connect, explore, and enjoy each other's company — not to perform for an audience. Leave your ego at the door. Be genuinely curious about the people around you. Ask questions. Listen. The best conversations at The Ember House happen between strangers who are really paying attention to each other.</div></div>
+    <div class="tone-card"><div class="tone-card-title">Relaxed, Not Chaotic</div><div class="tone-card-body">This is a space for adults who know themselves. The energy here should feel like a very good dinner party that happens to have a play space downstairs — unhurried, comfortable, and alive. We are not in a rush. There is no pressure to do anything, be anywhere, or impress anyone.</div></div>
+    <div class="tone-card"><div class="tone-card-title">Inclusive, Not Cliquey</div><div class="tone-card-body">Everyone arrived here through the same door. Whether you are attending your first event or your fifteenth, whether you came as a couple or solo, whether you know ten people in the room or none — you belong here equally. No one should feel like an outsider in this space.</div></div>
+    <div class="tone-card"><div class="tone-card-title">Playful, Not Predatory</div><div class="tone-card-body">Flirtation, chemistry, and playfulness are welcome and wonderful. Pursuit, pressure, and entitlement are not. There is a meaningful difference between expressing interest and creating pressure. Know the difference and stay firmly on the right side of it.</div></div>
+  </div>
+  <div class="pull-quote">
+    <div class="pull-quote-text">"The quality of this space is determined entirely by the people in it. You are not a guest here. You are a co-creator of this experience."</div>
+    <div class="pull-quote-sub">The Ember House &mdash; founding principle</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-rule"></div>
+  <div class="section-title">How We Treat Each Other</div>
+  <p style="font-size:14px;font-weight:300;color:var(--ash);margin-bottom:24px;line-height:1.75">These are the behaviours that define the culture of The Ember House. They apply in every space — the lounge, the play space, the hallways, and outdoors.</p>
+  <div class="principle" style="margin-bottom:2px"><div class="principle-num">1</div><div class="principle-body"><div class="principle-title">Lead with Kindness</div><div class="principle-text">Greet people. Smile. Make space for someone who looks uncertain. Introduce yourself. You do not need to know someone to make them feel welcome. A warm acknowledgement costs nothing and means everything to someone who is new or nervous.</div></div></div>
+  <div class="principle" style="margin-bottom:2px"><div class="principle-num">2</div><div class="principle-body"><div class="principle-title">Respect Every Boundary — Including the Ones That Aren't Said Out Loud</div><div class="principle-text">Not every boundary gets stated explicitly. Body language, energy, and context communicate just as clearly as words. If someone seems disengaged, distracted, or closed off — that is a boundary. Honour it without requiring them to articulate it. <strong>Attentiveness is a form of respect.</strong></div></div></div>
+  <div class="principle" style="margin-bottom:2px"><div class="principle-num">3</div><div class="principle-body"><div class="principle-title">Do Not Comment on What You Observe</div><div class="principle-text">What happens between consenting adults in this space is their business. Do not comment on, critique, or narrate other people's activities, bodies, choices, or relationships — to them or to anyone else. Curiosity is welcome. Commentary is not. <strong>Discretion extends inward, not just outward.</strong></div></div></div>
+  <div class="principle" style="margin-bottom:2px"><div class="principle-num">4</div><div class="principle-body"><div class="principle-title">Rejection Is Not a Conversation</div><div class="principle-text">When someone declines an invitation — to talk, to play, to connect — that answer is complete. It does not require explanation, justification, or negotiation. Accept it with grace, move on with warmth, and understand that <strong>how you respond to a no says everything about your character.</strong></div></div></div>
+  <div class="principle" style="margin-bottom:2px"><div class="principle-num">5</div><div class="principle-body"><div class="principle-title">Look After Each Other</div><div class="principle-text">If you see someone who looks overwhelmed, isolated, or distressed — check in with them. You do not need to fix anything. A quiet "are you okay?" can make a profound difference. If you are concerned about someone's wellbeing, tell the operator or consent monitor. <strong>Looking after each other is everyone's job.</strong></div></div></div>
+  <div class="principle" style="margin-bottom:32px"><div class="principle-num">6</div><div class="principle-body"><div class="principle-title">Leave People Better Than You Found Them</div><div class="principle-text">Every interaction is an opportunity. The person you spoke with for ten minutes at the bar, the couple you played beside, the stranger you helped find the bathroom — leave all of them with the impression that this community is exactly as warm, safe, and welcoming as they hoped it would be. <strong>Be the reason someone comes back.</strong></div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-rule"></div>
+  <div class="section-title">Shared Spaces &amp; Mixed Groups</div>
+  <p style="font-size:14px;font-weight:300;color:var(--ash);margin-bottom:24px;line-height:1.75">Retreat events bring together people from different friend groups, relationship structures, and experience levels. The social lounge and common areas are shared by everyone equally. Here is how we make that work.</p>
+  <div class="shared-block"><div class="shared-block-title">The Social Lounge Is Common Ground</div><div class="shared-block-body"><p>The upper level lounge is not reserved for any group or couple. It belongs to everyone at the event equally. If you arrive in a group of eight and take over the main seating area, you are limiting the space available to the other eight people who also paid to be here. Be spatially generous. Make room. Invite people in rather than closing the circle.</p></div></div>
+  <div class="shared-block"><div class="shared-block-title">You Don't Have to Know Someone to Be Friendly</div><div class="shared-block-body"><p>It is natural to spend most of your time with the people you came with. That is completely fine. But The Ember House is also a community space, and some of the people here may be attending alone or with a partner they don't know many others through. A brief, genuine acknowledgement of a stranger — a smile, a hello, a moment of eye contact — goes a long way.</p><p>You are not required to socialize with everyone. But you are expected to be warm to everyone. Those are not the same thing.</p></div></div>
+  <div class="shared-block"><div class="shared-block-title">Different Groups, One Space</div><div class="shared-block-body"><p>People at retreat events will have different experience levels, different relationship structures, different comfort zones, and different reasons for being here. Some guests will be seasoned community members. Others will be attending their first event of this kind. None of these differences create a hierarchy. <strong>Experience does not entitle anyone to more space, more access, or more consideration than anyone else.</strong> Meet every person where they are.</p></div></div>
+  <div class="shared-block"><div class="shared-block-title">The Play Space — Shared Etiquette</div><div class="shared-block-body"><p>The play space is available to all guests during open play periods. This means you may be playing alongside people you have never met. That requires a particular kind of social intelligence.</p><ul class="s" style="margin-top:12px"><li><strong>Give active scenes room.</strong> Do not hover close to a scene in progress. Give participants physical and psychological space to be fully present with each other.</li><li><strong>Do not interrupt a scene.</strong> If you wish to join an ongoing scene, wait for a natural break and ask explicitly — do not simply insert yourself.</li><li><strong>Wipe down equipment after use.</strong> This is a basic act of consideration for the next person. Supplies are provided throughout the space.</li><li><strong>Be mindful of noise.</strong> This is a shared space. Sounds carry. Be aware of the impact of high-volume interaction on others who are nearby.</li><li><strong>Aftercare happens here too.</strong> If you see a couple or group in aftercare — quiet, close, coming down from a scene — give them space and privacy. Do not approach unless invited.</li></ul></div></div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-rule"></div>
+  <div class="section-title">Privacy, Discretion &amp; Why This Space Exists</div>
+  <p style="font-size:14px;font-weight:300;color:var(--ash);margin-bottom:24px;line-height:1.75">This section is the most important one in this document. Please read it carefully.</p>
+  <div class="hl" style="margin-bottom:24px">
+    <h4>How This Space Came to Exist</h4>
+    <p>The Ember House exists because someone decided to build a space that should exist &mdash; a private, safe, purpose-built environment where consenting adults can explore freely, without judgment, without exposure, and without fear. It exists because the community it serves deserves better than improvised arrangements and unsuitable alternatives.</p>
+    <p>But spaces like this are fragile. They depend entirely on the discretion of everyone who uses them. A single careless conversation &mdash; at a dinner party, in a text message, on social media &mdash; can unravel everything that took courage and resources to build. Not just for the operator. For every guest who trusted this space with something deeply personal.</p>
+  </div>
+  <div class="privacy-impact">
+    <div class="pi-card ember"><div class="pi-card-icon">🔒</div><div class="pi-card-title">What Discretion Protects</div><div class="pi-card-body">Every guest here has a life outside these walls — a career, a family, a community, a reputation. They chose to come here because they trusted that what happens here stays here. When you protect this space with your silence, you are protecting every one of those lives. Discretion is not a rule imposed on you. It is an act of care for the people standing next to you.</div></div>
+    <div class="pi-card red"><div class="pi-card-icon">⚠️</div><div class="pi-card-title">What Disclosure Destroys</div><div class="pi-card-body">Speaking about what you saw, who you saw, or what happened inside The Ember House — to anyone outside of it — does two things simultaneously. It exposes the private lives of people who trusted you with something intimate. And it puts the continued existence of this venue at risk. Once that trust is broken, this space cannot function. It cannot exist. There is no version of this story where disclosure is harmless.</div></div>
+  </div>
+  <div class="shared-block" style="border-left-color:var(--ember);margin-bottom:14px">
+    <div class="shared-block-title">What Discretion Looks Like in Practice</div>
+    <div class="shared-block-body">
+      <ul class="s" style="margin-top:4px">
+        <li><strong>Do not identify this venue</strong> to anyone who is not already a confirmed guest &mdash; not the name, not the address, not the general area</li>
+        <li><strong>Do not name or describe other guests</strong> to anyone outside this community, in any form, ever</li>
+        <li><strong>Do not post about this venue</strong> on any social media platform, public or private, regardless of how vague you think you are being</li>
+        <li><strong>Do not photograph or record</strong> anything or anyone on this property &mdash; this rule exists precisely because images cannot be unshared</li>
+        <li><strong>Do not discuss specific activities or scenes</strong> you witnessed even within the community, unless you have the explicit consent of everyone involved</li>
+        <li><strong>If someone recognizes you</strong> outside of this space and you are not certain they are comfortable being acknowledged in that context &mdash; follow their lead, not your own comfort</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pull-quote">
+    <div class="pull-quote-text">"What you witnessed here belongs to the people who lived it. It is not yours to carry out the door."</div>
+    <div class="pull-quote-sub">The Ember House &mdash; on discretion</div>
+  </div>
+  <div class="hl red">
+    <h4>The Stakes Are Real</h4>
+    <p>A guest whose attendance here becomes known without their consent could face consequences in their professional life, their family relationships, their community standing. These are not hypothetical risks. They are the reason this community has always operated through private channels, word of mouth, and mutual trust.</p>
+    <p>The Ember House asks you to take those stakes seriously. Not because we are asking you to keep a secret for us &mdash; but because you are keeping a promise to every person in this room who trusted you enough to be here alongside them.</p>
+    <p><strong>Protect this space. Protect each other. That is how we ensure this community continues to exist.</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-rule"></div>
+  <div class="section-title">At a Glance</div>
+  <p style="font-size:14px;font-weight:300;color:var(--ash);margin-bottom:24px;line-height:1.75">A plain-language summary of the behaviours that build this community and the ones that break it.</p>
+  <div class="do-dont">
+    <div class="do-block">
+      <div class="do-header">Behaviours That Build This Space</div>
+      <div class="do-item">Introduce yourself to people you haven't met</div>
+      <div class="do-item">Make eye contact, smile, acknowledge people around you</div>
+      <div class="do-item">Ask before joining any activity or conversation</div>
+      <div class="do-item">Accept a "no" graciously and move on warmly</div>
+      <div class="do-item">Check in on people who seem uncertain or isolated</div>
+      <div class="do-item">Clean up after yourself in shared play areas</div>
+      <div class="do-item">Give active scenes physical and emotional space</div>
+      <div class="do-item">Be generous with space in common areas</div>
+      <div class="do-item">Respect aftercare — give couples privacy as they come down</div>
+      <div class="do-item">Keep everything you saw, heard, and experienced inside these walls</div>
+      <div class="do-item">Be the reason someone comes back</div>
+    </div>
+    <div class="dont-block">
+      <div class="dont-header">Behaviours That Break This Space</div>
+      <div class="dont-item">Treating the lounge as your private group's reserved section</div>
+      <div class="dont-item">Hovering near active scenes uninvited</div>
+      <div class="dont-item">Persisting after a "no" or interpreting silence as interest</div>
+      <div class="dont-item">Commenting on other people's bodies, choices, or relationships</div>
+      <div class="dont-item">Approaching someone who is clearly in aftercare or recovery</div>
+      <div class="dont-item">Treating less experienced guests as lesser</div>
+      <div class="dont-item">Speaking about other guests or this venue to anyone outside it</div>
+      <div class="dont-item">Posting about this venue on any platform in any form</div>
+      <div class="dont-item">Using intoxication as an excuse for poor behaviour</div>
+      <div class="dont-item">Creating a social atmosphere that makes anyone feel excluded</div>
+      <div class="dont-item">Leaving shared equipment uncleaned after use</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-rule"></div>
+  <div class="section-title">A Final Note</div>
+  <div class="hl green">
+    <h4>This Space Is Rare. Treat It That Way.</h4>
+    <p>Spaces like The Ember House exist because a small number of people decided to build something that should exist &mdash; and because the community that uses them understands what they have and protects it. A venue like this can only survive if every person in it takes responsibility for keeping it safe, warm, and worth coming back to.</p>
+    <p>You are part of that. Not just while you are here, but in the way you talk about this place (with discretion), the way you represent this community to others (with pride and care), and the way you treat the people you met here the next time you cross paths (with the same warmth you showed them the first night).</p>
+    <p>This community exists because people like you have protected it. Every time you leave here without saying a word about what happened inside, you make it possible for this space to open its doors again. Every time you treat a stranger here with genuine kindness, you make this community worth protecting.</p>
+    <p><strong>Thank you for being here. Thank you for being the kind of person who reads a Code of Conduct and means it. Now go have a wonderful time.</strong></p>
+  </div>
+  <p style="margin-top:28px;font-size:12px;font-weight:300;color:var(--slate);line-height:1.7">Questions about any aspect of this document or The Ember House community standards should be directed to the operator directly. The operator is always available on-site during events and reachable through your booking channel between events.</p>
+</div>
+
+<div class="doc-footer">
+  <span>Guest Document &mdash; The Ember House &mdash; Distributed at Booking</span>
+  <span>Code of Conduct &mdash; v1.0 &mdash; 2026</span>
+</div>
+
+</main>
+</body>
+</html>
