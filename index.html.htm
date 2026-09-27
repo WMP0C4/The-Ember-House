@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ember House — Document Index</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#f2ede4;--stone:#ece6da;--linen:#ddd5c4;--offwhite:#faf7f2;
+  --ink:#1a1612;--walnut:#4a3d30;--ash:#6b5e50;--slate:#8a7c6e;
+  --ember:#7c3028;--copper:#c4956a;--char:#3d2820;
+  --green:#2a5c3a;--amber:#8a5a10;
+}
+html,body{min-height:100%;background:var(--sand);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;line-height:1.75}
+nav{background:var(--char);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-brand{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand)}
+.nav-brand span{font-weight:300;color:rgba(242,237,228,0.4);font-size:10px;margin-left:10px;letter-spacing:0.1em}
+.nav-tag{font-size:9px;font-weight:400;color:rgba(242,237,228,0.35);letter-spacing:0.2em;text-transform:uppercase}
+main{max-width:1000px;margin:0 auto;padding:72px 48px 120px}
+
+.hero{margin-bottom:64px}
+.hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:20px}
+.hero-title{font-size:72px;font-weight:900;line-height:0.88;color:var(--ink);letter-spacing:-0.03em;margin-bottom:8px}
+.hero-title span{color:var(--ember)}
+.hero-sub{font-size:15px;font-weight:300;color:var(--ash);margin-bottom:32px;max-width:560px;line-height:1.6}
+.hero-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),var(--copper),transparent);margin-bottom:32px}
+.hero-meta{display:flex;gap:40px;flex-wrap:wrap}
+.hero-meta-item{display:flex;flex-direction:column}
+.hero-meta-label{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:4px}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--ink)}
+
+.doc-section-title{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--ember);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--linen)}
+
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px}
+.doc-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:48px}
+.doc-card{background:var(--offwhite);border:1px solid var(--linen);border-top:2px solid var(--ember);padding:24px 24px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all 0.18s;cursor:pointer}
+.doc-card:hover{background:var(--stone);border-top-color:var(--copper);transform:translateY(-2px);box-shadow:0 4px 20px rgba(26,22,18,0.08)}
+.doc-card.green{border-top-color:var(--green)}
+.doc-card.green:hover{border-top-color:var(--green);background:var(--stone)}
+.doc-card.amber{border-top-color:var(--amber)}
+.doc-card.amber:hover{border-top-color:var(--amber);background:var(--stone)}
+.doc-card-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
+.doc-card-title{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;margin-bottom:8px;line-height:1.1}
+.doc-card-desc{font-size:12px;font-weight:300;color:var(--slate);line-height:1.6;flex:1;margin-bottom:16px}
+.doc-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--linen)}
+.doc-card-tag{font-size:8px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px}
+.doc-card-tag.investor{color:var(--ember);background:rgba(124,48,40,0.08)}
+.doc-card-tag.guest{color:var(--green);background:rgba(42,92,58,0.08)}
+.doc-card-tag.ops{color:var(--amber);background:rgba(138,90,16,0.08)}
+.doc-card-arrow{font-size:16px;color:var(--ember);font-weight:300}
+.doc-card.green .doc-card-arrow{color:var(--green)}
+.doc-card.amber .doc-card-arrow{color:var(--amber)}
+
+.doc-grid-single{margin-bottom:48px}
+.doc-card-wide{max-width:480px}
+
+.notice{border:1px solid var(--linen);border-left:2px solid var(--ember);padding:16px 20px;background:var(--offwhite);font-size:12px;font-weight:300;color:var(--slate);line-height:1.7;margin-bottom:48px}
+.notice strong{font-weight:600;color:var(--ink)}
+
+footer{padding:20px 48px;border-top:1px solid var(--linen);display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto}
+footer span{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate)}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--sand)}::-webkit-scrollbar-thumb{background:var(--linen);border-radius:2px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">The Ember House<span>Document Suite</span></div>
+  <div class="nav-tag">Orangeville&ndash;Caledon&ndash;Amaranth, Ontario &mdash; 2026</div>
+</nav>
+
+<main>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Private Members&rsquo; Retreat &amp; Play Space &mdash; Document Index</div>
+    <div class="hero-title">The Ember<br><span>House</span></div>
+    <div class="hero-sub">A complete document suite covering the investment case, operational standards, guest onboarding, and event management for The Ember House.</div>
+    <div class="hero-rule"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-label">Total Documents</div><div class="hero-meta-value">6 Documents</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Location</div><div class="hero-meta-value">Orangeville&ndash;Caledon&ndash;Amaranth, ON</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Version</div><div class="hero-meta-value">v1.0 &mdash; 2026</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Status</div><div class="hero-meta-value">Confidential &mdash; Not for Public Distribution</div></div>
+    </div>
+  </div>
+
+  <!-- INVESTOR -->
+  <div class="doc-section-title">Investor Documents</div>
+  <div class="doc-grid">
+    <a class="doc-card" href="the-ember-house-business-plan.html">
+      <div class="doc-card-eyebrow">Investor Document &mdash; Primary</div>
+      <div class="doc-card-title">Business Plan</div>
+      <div class="doc-card-desc">Full 10-section investor-grade business plan covering executive summary, market research, business model, operations, capital expenditure, financial projections, payback period, exit strategy, workshops, and risk analysis.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag investor">Investor</span><span class="doc-card-arrow">→</span></div>
+    </a>
+    <a class="doc-card" href="the-ember-house-term-sheet.html">
+      <div class="doc-card-eyebrow">Investor Document &mdash; Leave-Behind</div>
+      <div class="doc-card-title">Investor Term Sheet</div>
+      <div class="doc-card-desc">One-page summary of investment terms, projected returns, 3-year IRR, three-year sensitivity analysis across all scenarios, exit options, and signature block. For discussion purposes &mdash; not a binding legal agreement.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag investor">Investor</span><span class="doc-card-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- GUEST -->
+  <div class="doc-section-title">Guest Documents</div>
+  <div class="doc-grid-3">
+    <a class="doc-card green" href="the-ember-house-sop.html">
+      <div class="doc-card-eyebrow">Guest Document &mdash; Distributed at Booking</div>
+      <div class="doc-card-title">Standards of Practice</div>
+      <div class="doc-card-desc">8-section consent and safety framework covering core principles, access and entry, the FRIES consent model, safewords, guest conduct, hygiene and sanitization, incident response, and guest acknowledgement.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag guest">Guest</span><span class="doc-card-arrow">→</span></div>
+    </a>
+    <a class="doc-card green" href="the-ember-house-code-of-conduct.html">
+      <div class="doc-card-eyebrow">Guest Document &mdash; Distributed at Booking</div>
+      <div class="doc-card-title">Code of Conduct</div>
+      <div class="doc-card-desc">Six-section community standard covering tone, interpersonal behaviour, shared space etiquette, mixed group dynamics, privacy and discretion, and why protecting this space protects every guest in it.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag guest">Guest</span><span class="doc-card-arrow">→</span></div>
+    </a>
+    <a class="doc-card green" href="the-ember-house-waiver.html">
+      <div class="doc-card-eyebrow">Guest Document &mdash; SmartWaiver / Signed Once</div>
+      <div class="doc-card-title">Guest Waiver &amp; Intake</div>
+      <div class="doc-card-desc">Digital-first intake form covering personal information, emergency contact, optional health disclosures, Standards of Practice acknowledgement checkboxes, and a 7-clause liability waiver. Signed once, kept on file permanently.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag guest">Guest</span><span class="doc-card-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- OPERATIONS -->
+  <div class="doc-section-title">Operations Documents</div>
+  <div class="doc-grid-single">
+    <a class="doc-card amber doc-card-wide" href="the-ember-house-run-sheet.html">
+      <div class="doc-card-eyebrow">Internal Document &mdash; One Per Event</div>
+      <div class="doc-card-title">Event Run Sheet</div>
+      <div class="doc-card-desc">Six-phase operational checklist covering pre-event setup, guest check-in, opening orientation, ongoing monitoring, guest checkout, and post-event sanitization. Includes consent monitor check-in log and incident record.</div>
+      <div class="doc-card-footer"><span class="doc-card-tag ops">Operations</span><span class="doc-card-arrow">→</span></div>
+    </a>
+  </div>
+
+  <div class="notice">
+    <strong>Confidentiality Notice:</strong> All documents in this suite are strictly confidential and intended solely for authorized recipients. They may not be reproduced, distributed, or disclosed to any third party without the express written consent of The Ember House operator. <strong>This index and all linked documents should be hosted on a private, password-protected repository or shared only via direct secure link.</strong>
+  </div>
+
+</main>
+
+<footer>
+  <span>The Ember House &mdash; Document Suite &mdash; v1.0 &mdash; 2026</span>
+  <span>Confidential &mdash; Not for Public Distribution</span>
+</footer>
+
+</body>
+</html>
